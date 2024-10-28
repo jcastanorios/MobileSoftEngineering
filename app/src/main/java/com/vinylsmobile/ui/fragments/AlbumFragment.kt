@@ -30,7 +30,7 @@ class AlbumFragment : Fragment() {
         binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
 
-        val api = Retrofit.Builder().baseUrl("http://localhost:3000/")
+        val api = Retrofit.Builder().baseUrl("https://backvynils-q6yc.onrender.com/")
             .addConverterFactory(GsonConverterFactory.create()).build().create(AlbumApi::class.java)
 
         val repository = AlbumRepository(api)
@@ -38,7 +38,7 @@ class AlbumFragment : Fragment() {
             this, AlbumViewModelFactory(repository)
         ).get(AlbumViewModel::class.java)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.albums.observe(viewLifecycleOwner, Observer { albums ->
             binding.recyclerView.adapter = AlbumAdapter(albums)

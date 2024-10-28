@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">VinylsMobile</string>
     <string name="album_cover">cover</string>
+    <string name="albumes_title">Álbumes</string>
 </resources>
