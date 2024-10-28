@@ -1,5 +1,6 @@
 package com.vinylsmobile.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,7 @@ class AlbumViewModel (private val repository: AlbumRepository) : ViewModel() {
                 val fetchedAlbums = repository.getAlbumList()
                 _albums.postValue(fetchedAlbums)
             } catch (e: Exception) {
-               //TODO manejar el error
+                Log.e("ViewModel", "Error fetching albums", e)
             }
         }
     }
