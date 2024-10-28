@@ -30,7 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@android:color/black"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>
