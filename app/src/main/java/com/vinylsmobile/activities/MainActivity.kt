@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val startButton: Button = findViewById(R.id.startButton)
+        val startButton: Button = findViewById(R.id.visitButton)
         startButton.setOnClickListener {
             val intent = Intent(this, CollectionActivity::class.java)
             startActivity(intent)
