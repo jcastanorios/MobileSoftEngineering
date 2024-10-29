@@ -39,8 +39,11 @@ class AlbumFragment : Fragment() {
         ).get(AlbumViewModel::class.java)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        binding.progressBar.visibility = View.VISIBLE
+
 
         viewModel.albums.observe(viewLifecycleOwner, Observer { albums ->
+            binding.progressBar.visibility = View.GONE
             binding.recyclerView.adapter = AlbumAdapter(albums)
         })
 
