@@ -7,8 +7,9 @@ import com.bumptech.glide.Glide
 import com.vinylsmobile.data.model.Album
 import com.vinylsmobile.databinding.ItemAlbumBinding
 
-class AlbumAdapter(private val albums: List<Album>) :
-    RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
+class AlbumAdapter : RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
+
+    var albums: List<Album> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAlbumBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,6 +25,12 @@ class AlbumAdapter(private val albums: List<Album>) :
     }
 
     override fun getItemCount() = albums.size
+
+
+    fun updateAlbums(newAlbums: List<Album>) {
+        albums = newAlbums
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(val binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root)
 }
