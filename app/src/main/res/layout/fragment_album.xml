@@ -5,12 +5,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="336dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/white"
             android:orientation="vertical"
@@ -34,14 +34,14 @@
                 android:fontFamily="@font/nunito_bold"
                 android:lineSpacingExtra="2sp"
                 android:text="@string/albumes_title"
+                android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="260dp" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
