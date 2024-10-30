@@ -8,12 +8,15 @@ import retrofit2.http.GET
 
 class NetworkServiceAdapter private constructor() {
 
-    private val api: AlbumApi by lazy {
-        Retrofit.Builder()
+    private fun createRetrofit(): Retrofit {
+        return Retrofit.Builder()
             .baseUrl("https://backvynils-q6yc.onrender.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(AlbumApi::class.java)
+    }
+
+    private val albumApi: AlbumApi by lazy {
+        createRetrofit().create(AlbumApi::class.java)
     }
 
     companion object {
@@ -27,6 +30,6 @@ class NetworkServiceAdapter private constructor() {
     }
 
     suspend fun getAlbums(): List<Album> {
-        return api.getAlbumList()
+        return albumApi.getAlbumList()
     }
 }
