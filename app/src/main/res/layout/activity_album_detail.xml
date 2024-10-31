@@ -20,6 +20,7 @@
             android:id="@+id/albumCover"
             android:layout_width="0dp"
             android:layout_height="300dp"
+            android:contentDescription="@string/album_cover_photo"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +32,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="10dp"
-            android:text="Album"
+            android:text="@string/album_title_placeholder"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/albumDetailBackButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/album_detail_back"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -43,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="30dp"
-        android:text="Descripción"
+        android:text="@string/description_placeholder"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +70,7 @@
             android:id="@+id/albumYear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="1998" />
+            android:text="@string/year_placeholder" />
 
         <TextView
             android:id="@+id/albumGenre"
@@ -66,12 +78,12 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:text="Genero" />
+            android:text="@string/album_genre_placeholder" />
 
         <TextView
             android:id="@+id/albumLabel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Disquera" />
+            android:text="@string/album_label_placeholder" />
     </LinearLayout>
 </LinearLayout>

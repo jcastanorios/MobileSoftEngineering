@@ -1,6 +1,7 @@
 package com.vinylsmobile.activities
 
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
 import com.vinylsmobile.data.model.Album
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class AlbumDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +32,7 @@ class AlbumDetailActivity : AppCompatActivity() {
         val year = findViewById<TextView>(R.id.albumYear)
         val genre = findViewById<TextView>(R.id.albumGenre)
         val label = findViewById<TextView>(R.id.albumLabel)
+        val albumDetailBackButton = findViewById<ImageButton>(R.id.albumDetailBackButton)
 
         Glide.with(this)
             .load(album.cover)
@@ -37,7 +41,15 @@ class AlbumDetailActivity : AppCompatActivity() {
         title.text=album.name
         description.text=album.description
         year.text=album.releaseDate
+        val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
+        val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        val date = isoFormat.parse(album.releaseDate)
+        year.text = if (date != null) humanReadableFormat.format(date) else album.releaseDate
         genre.text=album.genre
         label.text=album.recordLabel
+
+        albumDetailBackButton.setOnClickListener {
+            finish()
+        }
     }
 }
