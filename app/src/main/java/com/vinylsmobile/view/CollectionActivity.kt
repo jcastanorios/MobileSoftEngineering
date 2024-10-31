@@ -1,9 +1,8 @@
-package com.vinylsmobile.viewmodels
+package com.vinylsmobile.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.vinylsmobile.R
-import com.vinylsmobile.view.AlbumFragment
 
 class CollectionActivity : AppCompatActivity() {
 

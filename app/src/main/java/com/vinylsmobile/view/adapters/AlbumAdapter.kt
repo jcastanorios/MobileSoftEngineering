@@ -1,10 +1,10 @@
-package com.vinylsmobile.ui.adapters
+package com.vinylsmobile.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vinylsmobile.data.model.Album
+import com.vinylsmobile.model.Album
 import com.vinylsmobile.databinding.ItemAlbumBinding
 
 class AlbumAdapter(private val albums: List<Album>) :

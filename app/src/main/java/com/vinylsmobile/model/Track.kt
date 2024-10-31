@@ -1,4 +1,4 @@
-package com.vinylsmobile.data.model
+package com.vinylsmobile.model
 
 data class Track(
     val id: Int,

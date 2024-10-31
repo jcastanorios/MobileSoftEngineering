@@ -1,8 +1,8 @@
-package com.vinylsmobile.ui.viewmodels
+package com.vinylsmobile.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.vinylsmobile.data.repository.AlbumRepository
+import com.vinylsmobile.repository.AlbumRepository
 
 class AlbumViewModelFactory(private val repository: AlbumRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

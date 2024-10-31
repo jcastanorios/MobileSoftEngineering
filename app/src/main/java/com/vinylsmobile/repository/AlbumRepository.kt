@@ -1,12 +1,12 @@
-package com.vinylsmobile.data.repository
+package com.vinylsmobile.repository
 
-import com.vinylsmobile.network.NetworkServiceAdapter
-import com.vinylsmobile.data.model.Album
+import com.vinylsmobile.service.AlbumService
+import com.vinylsmobile.model.Album
 
 class AlbumRepository {
-    private val networkService = NetworkServiceAdapter.getInstance()
+    private val albumService = AlbumService.getInstance()
 
     suspend fun getAlbumList(): List<Album> {
-        return networkService.getAlbums()
+        return albumService.getAlbums()
     }
 }

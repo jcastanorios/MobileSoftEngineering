@@ -1,12 +1,11 @@
-package com.vinylsmobile.network
+package com.vinylsmobile.service
 
 import com.vinylsmobile.data.api.AlbumApi
-import com.vinylsmobile.data.model.Album
+import com.vinylsmobile.model.Album
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
 
-class NetworkServiceAdapter private constructor() {
+class AlbumService private constructor() {
 
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -21,11 +20,11 @@ class NetworkServiceAdapter private constructor() {
 
     companion object {
         @Volatile
-        private var instance: NetworkServiceAdapter? = null
+        private var instance: AlbumService? = null
 
-        fun getInstance(): NetworkServiceAdapter =
+        fun getInstance(): AlbumService =
             instance ?: synchronized(this) {
-                instance ?: NetworkServiceAdapter().also { instance = it }
+                instance ?: AlbumService().also { instance = it }
             }
     }
 

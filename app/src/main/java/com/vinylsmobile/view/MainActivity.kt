@@ -1,4 +1,4 @@
-package com.vinylsmobile.viewmodels
+package com.vinylsmobile.view
 
 import android.content.Intent
 import android.os.Bundle
