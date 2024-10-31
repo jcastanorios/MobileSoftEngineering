@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vinylsmobile.repository.AlbumRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
@@ -28,7 +29,10 @@ class AlbumListFragment : Fragment() {
         val repository = AlbumRepository()
         viewModel = ViewModelProvider(this, AlbumViewModelFactory(repository)).get(AlbumViewModel::class.java)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        //binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        //binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        val spanCount = calculateSpanCount(162) // 162dp es el ancho de cada ítem en item_album.xml
+        binding.recyclerView.layoutManager = GridLayoutManager(context, spanCount)
         binding.progressBar.visibility = View.VISIBLE
 
         viewModel.albums.observe(viewLifecycleOwner) { albums ->
@@ -44,5 +48,12 @@ class AlbumListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun calculateSpanCount(itemWidthDp: Int): Int {
+        val displayMetrics = resources.displayMetrics
+        val screenWidthPx = displayMetrics.widthPixels
+        val itemWidthPx = (itemWidthDp * displayMetrics.density).toInt()
+        return (screenWidthPx / itemWidthPx).coerceAtLeast(1)
     }
 }
