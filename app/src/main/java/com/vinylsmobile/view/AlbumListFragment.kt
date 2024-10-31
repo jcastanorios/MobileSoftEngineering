@@ -9,13 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vinylsmobile.repository.AlbumRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
+import com.vinylsmobile.databinding.FragmentListAlbumBinding
 import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
 import com.vinylsmobile.viewmodels.AlbumViewModelFactory
-import com.vinylsmobile.R
 
-class AlbumFragment : Fragment() {
-    private var _binding: FragmentAlbumBinding? = null
+class AlbumListFragment : Fragment() {
+    private var _binding: FragmentListAlbumBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: AlbumViewModel
@@ -23,24 +23,17 @@ class AlbumFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAlbumBinding.inflate(inflater, container, false)
+        _binding = FragmentListAlbumBinding.inflate(inflater, container, false)
 
         val repository = AlbumRepository()
         viewModel = ViewModelProvider(this, AlbumViewModelFactory(repository)).get(AlbumViewModel::class.java)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.progressBar.visibility = View.VISIBLE
 
         viewModel.albums.observe(viewLifecycleOwner) { albums ->
             binding.progressBar.visibility = View.GONE
             binding.recyclerView.adapter = AlbumAdapter(albums)
-        }
-
-        binding.albumListTitle.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumListFragment())
-                .addToBackStack(null)
-                .commit()
         }
 
         viewModel.loadAlbums()
