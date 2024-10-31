@@ -1,11 +1,10 @@
-package com.vinylsmobile.activities
+package com.vinylsmobile.viewmodels
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.vinylsmobile.R
-import com.vinylsmobile.ui.fragments.AlbumFragment
 
 class MainActivity : AppCompatActivity() {
 
