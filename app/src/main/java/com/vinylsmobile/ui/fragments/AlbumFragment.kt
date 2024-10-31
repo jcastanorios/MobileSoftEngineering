@@ -24,37 +24,35 @@ import com.vinylsmobile.ui.viewmodels.AlbumViewModelFactory
 import kotlinx.coroutines.launch
 
 class AlbumFragment : Fragment() {
+    private var _binding: FragmentAlbumBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: FragmentAlbumBinding
     private lateinit var viewModel: AlbumViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAlbumBinding.inflate(inflater, container, false)
+        _binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
+        val repository = AlbumRepository()
+        viewModel = ViewModelProvider(this, AlbumViewModelFactory(repository)).get(AlbumViewModel::class.java)
 
-        val api = Retrofit.Builder().baseUrl("https://backvynils-q6yc.onrender.com/")
-            .addConverterFactory(GsonConverterFactory.create()).build().create(AlbumApi::class.java)
-
-        val repository = AlbumRepository(api)
-        viewModel = ViewModelProvider(
-            this, AlbumViewModelFactory(repository)
-        ).get(AlbumViewModel::class.java)
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.progressBar.visibility = View.VISIBLE
 
         val context = requireContext()
-        viewModel.albums.observe(viewLifecycleOwner, Observer { albums ->
+        viewModel.albums.observe(viewLifecycleOwner) { albums ->
             binding.progressBar.visibility = View.GONE
             binding.recyclerView.adapter = AlbumAdapter(context, albums)
-        })
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.loadAlbums()
         }
 
+        viewModel.loadAlbums()
+
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

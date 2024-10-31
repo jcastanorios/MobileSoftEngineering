@@ -9,11 +9,11 @@ import kotlinx.coroutines.launch
 import com.vinylsmobile.data.model.Album
 import com.vinylsmobile.data.repository.AlbumRepository
 
-class AlbumViewModel (private val repository: AlbumRepository) : ViewModel() {
+class AlbumViewModel(private val repository: AlbumRepository) : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()
     val albums: LiveData<List<Album>> get() = _albums
 
-    suspend fun loadAlbums() {
+    fun loadAlbums() {
         viewModelScope.launch {
             try {
                 val fetchedAlbums = repository.getAlbumList()
