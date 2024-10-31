@@ -16,6 +16,9 @@
         android:theme="@style/Theme.VinylsMobile"
         tools:targetApi="31">
         <activity
+            android:name=".activities.AlbumDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.CollectionActivity"
             android:exported="false"
             android:label="@string/title_activity_collection"

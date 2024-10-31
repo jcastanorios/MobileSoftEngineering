@@ -1,14 +1,18 @@
 package com.vinylsmobile.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.vinylsmobile.R
+import com.vinylsmobile.activities.CollectionActivity
 import com.vinylsmobile.data.api.AlbumApi
 import com.vinylsmobile.data.repository.AlbumRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
@@ -41,10 +45,10 @@ class AlbumFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
         binding.progressBar.visibility = View.VISIBLE
 
-
+        val context = requireContext()
         viewModel.albums.observe(viewLifecycleOwner, Observer { albums ->
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = AlbumAdapter(albums)
+            binding.recyclerView.adapter = AlbumAdapter(context, albums)
         })
 
         viewLifecycleOwner.lifecycleScope.launch {
