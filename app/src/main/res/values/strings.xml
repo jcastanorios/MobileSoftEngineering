@@ -6,4 +6,11 @@
     <string name="title_activity_collection">CollectionActivity</string>
     <string name="txt_btn_visitor">Visitante</string>
     <string name="txt_btn_collect">Coleccionista</string>
+    <string name="album_cover_photo">Album cover photo</string>
+    <string name="description_placeholder">Descripción</string>
+    <string name="year_placeholder">1998</string>
+    <string name="album_detail_back">Album detail back button</string>
+    <string name="album_title_placeholder">Album</string>
+    <string name="album_genre_placeholder">Genero</string>
+    <string name="album_label_placeholder">Disquera</string>
 </resources>

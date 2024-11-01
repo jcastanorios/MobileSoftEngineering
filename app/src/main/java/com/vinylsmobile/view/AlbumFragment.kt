@@ -1,5 +1,6 @@
 package com.vinylsmobile.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +32,10 @@ class AlbumFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.progressBar.visibility = View.VISIBLE
 
+        val context = requireContext()
         viewModel.albums.observe(viewLifecycleOwner) { albums ->
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = AlbumAdapter(albums)
+            binding.recyclerView.adapter = AlbumAdapter(context, albums)
         }
 
 

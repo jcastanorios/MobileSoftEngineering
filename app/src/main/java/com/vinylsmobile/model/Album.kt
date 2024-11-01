@@ -1,5 +1,7 @@
 package com.vinylsmobile.model
 
+import java.io.Serializable
+
 data class Album (
     val id: Int,
     val name: String,
@@ -11,4 +13,4 @@ data class Album (
     val tracks: List<Track>,
     val performers: List<Performer>,
     val comments: List<Comment>
-)
+) : Serializable
