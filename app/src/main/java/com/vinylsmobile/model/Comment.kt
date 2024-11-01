@@ -1,4 +1,4 @@
-package com.vinylsmobile.data.model
+package com.vinylsmobile.model
 
 data class Comment(
     val id: Int,
