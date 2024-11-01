@@ -1,4 +1,4 @@
-package com.vinylsmobile.activities
+package com.vinylsmobile.view
 
 import android.os.Bundle
 import android.widget.ImageButton
@@ -10,7 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
-import com.vinylsmobile.data.model.Album
+import com.vinylsmobile.model.Album
 import java.text.SimpleDateFormat
 import java.util.Locale
 

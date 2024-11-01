@@ -1,4 +1,4 @@
-package com.vinylsmobile.ui.viewmodels
+package com.vinylsmobile.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import com.vinylsmobile.data.model.Album
-import com.vinylsmobile.data.repository.AlbumRepository
+import com.vinylsmobile.model.Album
+import com.vinylsmobile.repository.AlbumRepository
 
 class AlbumViewModel(private val repository: AlbumRepository) : ViewModel() {
     private val _albums = MutableLiveData<List<Album>>()

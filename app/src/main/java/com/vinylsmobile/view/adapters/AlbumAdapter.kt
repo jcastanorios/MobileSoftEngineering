@@ -1,18 +1,14 @@
-package com.vinylsmobile.ui.adapters
+package com.vinylsmobile.view.adapters
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vinylsmobile.R
-import com.vinylsmobile.activities.AlbumDetailActivity
-import com.vinylsmobile.activities.CollectionActivity
-import com.vinylsmobile.data.model.Album
+import com.vinylsmobile.model.Album
+import com.vinylsmobile.view.AlbumDetailActivity
 import com.vinylsmobile.databinding.ItemAlbumBinding
 
 class AlbumAdapter(private val context: Context, private val albums: List<Album> ) :

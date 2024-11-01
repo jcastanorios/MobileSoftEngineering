@@ -16,15 +16,15 @@
         android:theme="@style/Theme.VinylsMobile"
         tools:targetApi="31">
         <activity
-            android:name=".activities.AlbumDetailActivity"
+            android:name=".view.AlbumDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.CollectionActivity"
+            android:name=".view.CollectionActivity"
             android:exported="false"
             android:label="@string/title_activity_collection"
             android:theme="@style/Theme.VinylsMobile" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
