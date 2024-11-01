@@ -12,7 +12,10 @@ import com.vinylsmobile.databinding.FragmentAlbumBinding
 import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
 import com.vinylsmobile.viewmodels.AlbumViewModelFactory
+<<<<<<< HEAD
 import com.vinylsmobile.R
+=======
+>>>>>>> develop
 
 class AlbumFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
@@ -35,6 +38,7 @@ class AlbumFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
             binding.recyclerView.adapter = AlbumAdapter(albums)
         }
+
 
         binding.albumListTitle.setOnClickListener {
             parentFragmentManager.beginTransaction()
