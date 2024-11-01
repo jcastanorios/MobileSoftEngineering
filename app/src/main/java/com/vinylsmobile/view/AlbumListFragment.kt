@@ -33,9 +33,10 @@ class AlbumListFragment : Fragment() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, spanCount)
         binding.progressBar.visibility = View.VISIBLE
 
+        val context = requireContext()
         viewModel.albums.observe(viewLifecycleOwner) { albums ->
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = AlbumAdapter(albums)
+            binding.recyclerView.adapter = AlbumAdapter(context, albums)
         }
 
         viewModel.loadAlbums()
