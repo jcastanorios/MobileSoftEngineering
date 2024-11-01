@@ -30,7 +30,7 @@ class AlbumAdapter(private val context: Context, private val albums: List<Album>
         albumButton.setOnClickListener {
             val intent = Intent(context, AlbumDetailActivity::class.java)
 
-            intent.putExtra("album",album)
+            intent.putExtra("albumID",album.id)
             context.startActivity(intent)
         }
     }

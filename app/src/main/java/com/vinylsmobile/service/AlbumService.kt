@@ -31,4 +31,8 @@ class AlbumService private constructor() {
     suspend fun getAlbums(): List<Album> {
         return albumApi.getAlbumList()
     }
+
+    suspend fun getAlbum(id: Int): Album {
+        return albumApi.getAlbum(id)
+    }
 }
