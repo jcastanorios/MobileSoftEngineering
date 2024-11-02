@@ -1,15 +1,12 @@
 package com.vinylsmobile;
 
-
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.vinylsmobile.view.AlbumDetailActivity;
-import com.vinylsmobile.view.AlbumListFragment;
-import com.vinylsmobile.view.CollectionActivity;
 import com.vinylsmobile.view.MainActivity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,122 +16,117 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-//import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 
 @RunWith(AndroidJUnit4.class)
 public class AlbumDetailTest {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityTestRule = new ActivityScenarioRule<>(MainActivity.class);
-    @Rule
-    public ActivityScenarioRule<CollectionActivity> mCollectionTestRule = new ActivityScenarioRule<>(CollectionActivity.class);//
-    //@Rule
-    public ActivityScenarioRule<AlbumDetailActivity> mAlbumDetailActivityTestRule = new ActivityScenarioRule<>(AlbumDetailActivity.class);//
+
 
     @Test
     public void testDisplayAlbumDetailFromCollection() {
 
-        // Id Button Visit en MainActivity
-        ViewInteraction visitButton = onView(withId(R.id.visitButton));
-        visitButton.check(matches(isDisplayed()));
+        // Realiza clic en el boton visitante
+        onView(withId(R.id.visitButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.visitButton)).perform(click());
 
-        // clic en el boton visitante
-        visitButton.perform(click());
+        // Espera fija para dar tiempo a que se carguen los datos del album
+        espera(4000);
+        // Clic en el primer álbum del RecyclerView
+        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
+        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
 
-        //Click en el primer album
-        //int albumCard = R.id.albumCard;
-        //onView(withId(R.id.albumCard))
-        //        .perform(click());
-        //onView(allOf(withId(R.id.albumCard), isDisplayed())).perform(click());
-        // Click en el primer album
-        onView(withId(R.id.recyclerView))
-                .perform(actionOnItemAtPosition(0, click()));
+        //Espera a que se carguen los datos del album para el detalle
+        espera(1000);
 
-        //onView(withId(R.id.recyclerView))
-        //        .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        //Valida que todos los elementeos del detalle del album esten presentes
+        onView(withId(R.id.albumCover)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumName)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumDescription)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumYear)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumLabel)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumGenre)).check(matches(isDisplayed()));
 
-
-
-        // Verificacion que esta presente el elemento albumCover
-        onView(withId(R.id.albumCover))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumName
-        onView(withId(R.id.albumName))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumDescription
-        onView(withId(R.id.albumDescription))
-                .check(matches(isDisplayed()));
-
-
-        // Verificacion que esta presente el elemento albumName
-        onView(withId(R.id.albumYear))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumDescription
-        onView(withId(R.id.albumLabel))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumGenre
+        // Valida que el campo Género contiene una de las opciones permitidas
         onView(withId(R.id.albumGenre))
-                .check(matches(isDisplayed()));
+                .check(matches(anyOf(
+                        withText("Classical"),
+                        withText("Salsa"),
+                        withText("Rock"),
+                        withText("Folk")
+                )));
+
+        //Valida que el campo Disquera contiene una de las opciones permitidas
+        onView(withId(R.id.albumLabel))
+                .check(matches(anyOf(
+                        withText("Sony Music"),
+                        withText("Discos Fuentes"),
+                        withText("Elektra"),
+                        withText("Fania Records")
+                )));
+
 
     }
 
     @Test
     public void testDisplayAlbumDetailFromAlbumList() {
-        // Id Button Visit en MainActivity
-        ViewInteraction visitButton = onView(withId(R.id.visitButton));
-        visitButton.check(matches(isDisplayed()));
 
-        // clic en el boton visitante
-        visitButton.perform(click());
+        // Realiza clic en el boton visitante
+        onView(withId(R.id.visitButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.visitButton)).perform(click());
 
-        ViewInteraction albumForwardButton = onView(withId(R.id.albumForwardButton));
-        albumForwardButton.perform(click());
+        //Clic en el botón para avanzar a la lista de álbumes
+        onView(withId(R.id.albumForwardButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumForwardButton)).perform(click());
 
+        // Espera fija para dar tiempo a que se carguen los datos del album
+        espera(4000);
+        // Clic en el primer álbum del RecyclerView
+        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
+        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
 
-        //Click en el primer album
-        //onView(withId(R.id.recyclerView))
-        //        .perform(click());
-        //onView(withId(R.id.recyclerView))
-        //        .perform(actionOnItemAtPosition(0, click()));
-        onView(withId(R.id.recyclerView))
-                .perform(actionOnItemAtPosition(0, click()));
-        //onView(allOf(withId(R.id.albumCard), isDisplayed())).perform(click());
+        //Espera a que se carguen los datos del album para el detalle
+        espera(1000);
 
+        //Valida que todos los elementeos del detalle del album esten presentes
+        onView(withId(R.id.albumCover)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumName)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumDescription)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumYear)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumLabel)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumGenre)).check(matches(isDisplayed()));
 
-        // Verificacion que esta presente el elemento albumCover
-        onView(withId(R.id.albumCover))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumName
-        onView(withId(R.id.albumName))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumDescription
-        onView(withId(R.id.albumDescription))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumName
-        onView(withId(R.id.albumYear))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumDescription
-        onView(withId(R.id.albumLabel))
-                .check(matches(isDisplayed()));
-
-        // Verificacion que esta presente el elemento albumGenre
+        //Valida que el campo Género contiene una de las opciones permitidas
         onView(withId(R.id.albumGenre))
-                .check(matches(isDisplayed()));
+                .check(matches(anyOf(
+                        withText("Classical"),
+                        withText("Salsa"),
+                        withText("Rock"),
+                        withText("Folk")
+                )));
+
+        // Valida que el campo Disquera contiene una de las opciones permitidas
+        onView(withId(R.id.albumLabel))
+                .check(matches(anyOf(
+                        withText("Sony Music"),
+                        withText("Discos Fuentes"),
+                        withText("Elektra"),
+                        withText("Fania Records")
+                )));
 
     }
 
+
+    private void espera(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
-
-
-
-
