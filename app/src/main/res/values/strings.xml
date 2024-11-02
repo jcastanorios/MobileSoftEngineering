@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">VinylsMobile</string>
     <string name="album_cover">cover</string>
-    <string name="albumes_title">Álbumes →</string>
+    <string name="albumes_title">Álbumes</string>
     <string name="albumes_title_list">Lista de Álbumes</string>
     <string name="title_activity_collection">CollectionActivity</string>
     <string name="txt_btn_visitor">Visitante</string>

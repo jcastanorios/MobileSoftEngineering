@@ -39,7 +39,7 @@ class AlbumFragment : Fragment() {
         }
 
 
-        binding.albumListTitle.setOnClickListener {
+        binding.albumForwardButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AlbumListFragment())
                 .addToBackStack(null)
