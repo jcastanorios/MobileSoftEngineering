@@ -14,6 +14,8 @@ import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
 import com.vinylsmobile.viewmodels.AlbumViewModelFactory
 import com.vinylsmobile.R
+import android.widget.Toast
+
 
 class AlbumFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
@@ -27,18 +29,38 @@ class AlbumFragment : Fragment() {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
         val repository = AlbumRepository()
-        viewModel = ViewModelProvider(this, AlbumViewModelFactory(repository)).get(AlbumViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            AlbumViewModelFactory(repository)
+        ).get(AlbumViewModel::class.java)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.progressBar.visibility = View.VISIBLE
 
-        val context = requireContext()
-        viewModel.albums.observe(viewLifecycleOwner) { albums ->
-            binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = AlbumAdapter(context, albums)
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                viewModel.resetErrorMessage()
+            }
+        }
+        val context = requireContext()
+        viewModel.albums.observe(viewLifecycleOwner) { albums ->
+            if (albums.isEmpty()) {
+                viewModel.albums.observe(viewLifecycleOwner) { errorMessage ->
+                    errorMessage?.let {
+                        Toast.makeText(context, "No hay álbumes disponibles", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            } else {
+                binding.recyclerView.adapter = AlbumAdapter(context, albums)
+            }
+        }
         binding.albumForwardButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AlbumListFragment())
