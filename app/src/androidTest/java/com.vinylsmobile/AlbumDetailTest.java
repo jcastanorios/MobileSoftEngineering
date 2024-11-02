@@ -19,6 +19,9 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+//import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static org.hamcrest.CoreMatchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
 public class AlbumDetailTest {
@@ -27,11 +30,12 @@ public class AlbumDetailTest {
     public ActivityScenarioRule<MainActivity> mActivityTestRule = new ActivityScenarioRule<>(MainActivity.class);
     @Rule
     public ActivityScenarioRule<CollectionActivity> mCollectionTestRule = new ActivityScenarioRule<>(CollectionActivity.class);//
-    @Rule
+    //@Rule
     public ActivityScenarioRule<AlbumDetailActivity> mAlbumDetailActivityTestRule = new ActivityScenarioRule<>(AlbumDetailActivity.class);//
 
     @Test
     public void testDisplayAlbumDetailFromCollection() {
+
         // Id Button Visit en MainActivity
         ViewInteraction visitButton = onView(withId(R.id.visitButton));
         visitButton.check(matches(isDisplayed()));
@@ -40,9 +44,16 @@ public class AlbumDetailTest {
         visitButton.perform(click());
 
         //Click en el primer album
-        onView(withId(R.id.albumCard))
-                .perform(click());
+        //int albumCard = R.id.albumCard;
+        //onView(withId(R.id.albumCard))
+        //        .perform(click());
+        //onView(allOf(withId(R.id.albumCard), isDisplayed())).perform(click());
+        // Click en el primer album
+        onView(withId(R.id.recyclerView))
+                .perform(actionOnItemAtPosition(0, click()));
 
+        //onView(withId(R.id.recyclerView))
+        //        .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
 
 
@@ -58,7 +69,7 @@ public class AlbumDetailTest {
         onView(withId(R.id.albumDescription))
                 .check(matches(isDisplayed()));
 
-/*
+
         // Verificacion que esta presente el elemento albumName
         onView(withId(R.id.albumYear))
                 .check(matches(isDisplayed()));
@@ -69,7 +80,7 @@ public class AlbumDetailTest {
 
         // Verificacion que esta presente el elemento albumGenre
         onView(withId(R.id.albumGenre))
-                .check(matches(isDisplayed())); */
+                .check(matches(isDisplayed()));
 
     }
 
@@ -87,9 +98,13 @@ public class AlbumDetailTest {
 
 
         //Click en el primer album
+        //onView(withId(R.id.recyclerView))
+        //        .perform(click());
+        //onView(withId(R.id.recyclerView))
+        //        .perform(actionOnItemAtPosition(0, click()));
         onView(withId(R.id.recyclerView))
-                .perform(click());
-
+                .perform(actionOnItemAtPosition(0, click()));
+        //onView(allOf(withId(R.id.albumCard), isDisplayed())).perform(click());
 
 
         // Verificacion que esta presente el elemento albumCover
@@ -117,6 +132,9 @@ public class AlbumDetailTest {
                 .check(matches(isDisplayed()));
 
     }
+
 }
+
+
 
 
