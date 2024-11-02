@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.vinylsmobile.R
 import com.vinylsmobile.repository.AlbumRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
 import com.vinylsmobile.databinding.FragmentListAlbumBinding
@@ -37,6 +38,12 @@ class AlbumListFragment : Fragment() {
         viewModel.albums.observe(viewLifecycleOwner) { albums ->
             binding.progressBar.visibility = View.GONE
             binding.recyclerView.adapter = AlbumAdapter(context, albums)
+        }
+        binding.albumBackButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, AlbumFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
         viewModel.loadAlbums()

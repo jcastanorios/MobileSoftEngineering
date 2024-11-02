@@ -18,6 +18,7 @@
             android:paddingEnd="20dp">
 
             <ImageView
+                android:id="@+id/imgHome"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -25,18 +26,36 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ico" />
 
-            <TextView
-                android:id="@+id/albumListTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/nunito_bold"
-                android:lineSpacingExtra="2sp"
-                android:text="@string/albumes_title"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/albumListTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="@string/albumes_title"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <ImageButton
+                    android:id="@+id/albumForwardButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:contentDescription="@string/album_detail_back"
+                    android:src="@drawable/arrow_forward" />
+
+            </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
