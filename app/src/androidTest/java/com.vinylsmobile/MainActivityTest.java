@@ -5,7 +5,6 @@ import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.vinylsmobile.R;
 import com.vinylsmobile.view.MainActivity;
 
 import org.junit.Rule;
