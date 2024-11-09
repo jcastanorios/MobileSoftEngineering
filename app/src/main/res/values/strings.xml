@@ -12,4 +12,8 @@
     <string name="album_title_placeholder">Album</string>
     <string name="album_genre_placeholder">Genero</string>
     <string name="album_label_placeholder">Disquera</string>
+
+    <string name="performer_detail_back">Performer detail back button</string>
+    <string name="performers_title">Artistas</string>
+    <string name="performer_forward_button">Ir a la lista de artistas</string>
 </resources>
