@@ -67,6 +67,26 @@ class AlbumFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+        binding.albumListTitle.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, AlbumListFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.performerForwardButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, PerformerListFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        binding.performerListTitle.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, PerformerListFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
 
         viewModel.loadAlbums()
 
