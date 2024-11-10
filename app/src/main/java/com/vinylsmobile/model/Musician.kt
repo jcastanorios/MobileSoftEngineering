@@ -1,10 +1,9 @@
 package com.vinylsmobile.model
 
 data class Musician (
-    val id: Int,
-    val name: String,
-    val image: String,
-    val description: String,
+    override val id: Int,
+    override val name: String,
+    override val image: String,
+    override val description: String,
     val birthDate: String
-)
-
+): IPerformer
