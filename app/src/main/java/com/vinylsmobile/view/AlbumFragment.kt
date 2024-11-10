@@ -88,6 +88,19 @@ class AlbumFragment : Fragment() {
         }
 
 
+        binding.collectorForwardButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, CollectorListFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        binding.collectorListTitle.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, CollectorListFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
         viewModel.loadAlbums()
 
         return binding.root
