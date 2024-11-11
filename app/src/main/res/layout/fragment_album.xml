@@ -102,6 +102,37 @@
                     android:src="@drawable/arrow_forward" />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/collectorListTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="@string/collectors_title"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+                <ImageButton
+                    android:id="@+id/collectorForwardButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:contentDescription="@string/collectors_forward_button"
+                    android:src="@drawable/arrow_forward" />
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </layout>
