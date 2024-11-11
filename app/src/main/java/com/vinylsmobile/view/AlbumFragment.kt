@@ -1,6 +1,5 @@
 package com.vinylsmobile.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,78 +8,97 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vinylsmobile.repository.AlbumRepository
+import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
 import com.vinylsmobile.view.adapters.AlbumAdapter
+import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
 import com.vinylsmobile.viewmodels.AlbumViewModelFactory
+import com.vinylsmobile.viewmodels.PerformerViewModel
+import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import com.vinylsmobile.R
 import android.widget.Toast
-
 
 class AlbumFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: AlbumViewModel
+    private lateinit var albumViewModel: AlbumViewModel
+    private lateinit var performerViewModel: PerformerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
-        val repository = AlbumRepository()
-        viewModel = ViewModelProvider(
+        val albumRepository = AlbumRepository()
+        albumViewModel = ViewModelProvider(
             this,
-            AlbumViewModelFactory(repository)
+            AlbumViewModelFactory(albumRepository)
         ).get(AlbumViewModel::class.java)
+
+        val performerRepository = PerformerRepository()
+        performerViewModel = ViewModelProvider(
+            this,
+            PerformerViewModelFactory(performerRepository)
+        ).get(PerformerViewModel::class.java)
 
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewArtist.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
         binding.progressBar.visibility = View.VISIBLE
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        // Observa el estado de carga de ambos ViewModels
+        val observer = { isLoading: Boolean ->
+            val albumIsLoading = albumViewModel.isLoading.value ?: false
+            val performerIsLoading = performerViewModel.isLoading.value ?: false
+            // Si cualquiera de los dos está cargando, muestra la barra de progreso
+            binding.progressBar.visibility = if (albumIsLoading || performerIsLoading) View.VISIBLE else View.GONE
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+        albumViewModel.isLoading.observe(viewLifecycleOwner, observer)
+        performerViewModel.isLoading.observe(viewLifecycleOwner, observer)
+
+        albumViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             errorMessage?.let {
                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-                viewModel.resetErrorMessage()
+                albumViewModel.resetErrorMessage()
             }
         }
-        val context = requireContext()
-        viewModel.albums.observe(viewLifecycleOwner) { albums ->
+
+        performerViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                performerViewModel.resetErrorMessage()
+            }
+        }
+
+        albumViewModel.albums.observe(viewLifecycleOwner) { albums ->
             if (albums.isEmpty()) {
-                viewModel.albums.observe(viewLifecycleOwner) { errorMessage ->
-                    errorMessage?.let {
-                        Toast.makeText(context, "No hay álbumes disponibles", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
+                Toast.makeText(context, "No hay álbumes disponibles", Toast.LENGTH_SHORT).show()
             } else {
-                binding.recyclerView.adapter = AlbumAdapter(context, albums)
+                binding.recyclerView.adapter = AlbumAdapter(requireContext(), albums)
             }
         }
 
-        binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
-        binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
-        binding.performerForwardButton.setOnClickListener { navigateTo(PerformerListFragment()) }
-        binding.performerListTitle.setOnClickListener { navigateTo(PerformerListFragment()) }
+        performerViewModel.performers.observe(viewLifecycleOwner) { performers ->
+            if (performers.isEmpty()) {
+                Toast.makeText(context, "No hay artistas disponibles", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.recyclerViewArtist.adapter = PerformerAdapter(requireContext(), performers)
+            }
+        }
 
-
-
-        viewModel.loadAlbums()
+        albumViewModel.loadAlbums()
+        performerViewModel.loadPerformers()
 
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    private fun navigateTo(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
     }
 }

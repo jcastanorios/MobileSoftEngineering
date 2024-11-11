@@ -16,7 +16,7 @@
     <string name="performer_detail_back">Performer detail back button</string>
     <string name="performers_title">Artistas</string>
     <string name="performer_forward_button">Ir a la lista de artistas</string>
-    <string nam="performer_cover_photo">Performer cover photo</string>
+    <string name="performer_image">Performer image</string>
     <string name="performer_title_placeholder">Performer</string>
     <string name="performer_description">Description</string>
     <string name="fec_nac_placeholder">Fecha de nacimiento:</string>

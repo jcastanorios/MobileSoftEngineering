@@ -5,21 +5,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vinylsmobile.model.Performer
+import com.vinylsmobile.model.IPerformer
+import com.vinylsmobile.model.Musician
 import com.vinylsmobile.repository.PerformerRepository
 import kotlinx.coroutines.launch
 
 class PerformerDetailViewModel(private val repository: PerformerRepository) : ViewModel() {
-    private val _album = MutableLiveData<Album>()
-    val album: LiveData<Performer> get() = _album
+    private val _performer = MutableLiveData<IPerformer>()
+    val performer: LiveData<IPerformer> get() = _performer
 
     fun loadPerformer(id: Int) {
         viewModelScope.launch {
             try {
                 val fetchedPerformer = repository.getPerformerItem(id)
-                _album.postValue(fetchedPerformer)
+                _performer.postValue(fetchedPerformer)
+
             } catch (e: Exception) {
-                Log.e("ViewModel", "Error fetching album", e)
+                Log.e("ViewModel", "Error fetching performer", e)
             }
         }
     }

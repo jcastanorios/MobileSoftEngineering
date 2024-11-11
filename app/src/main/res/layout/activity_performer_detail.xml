@@ -20,7 +20,7 @@
             android:id="@+id/performerImageDetail"
             android:layout_width="0dp"
             android:layout_height="300dp"
-            android:contentDescription="@string/performer_cover_photo"
+            android:contentDescription="@string/performer_image"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,32 +73,33 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/performerFecNaci"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fec_nac_placeholder"
-        android:layout_marginEnd="8dp" />
+        <TextView
+            android:id="@+id/performerFecNaci"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/fec_nac_placeholder" />
 
-    <TextView
-        android:id="@+id/performerYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/performer_year_placeholder"
-        android:layout_marginEnd="8dp" /> <!-- Menor margen entre TextViews -->
 
-    <TextView
-        android:id="@+id/performerMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/performer_mes_placeholder"
-        android:layout_marginEnd="8dp" /> <!-- Menor margen entre TextViews -->
+        <TextView
+            android:id="@+id/performerDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/performer_dia_placeholder" />
 
-    <TextView
-        android:id="@+id/performerDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/performer_dia_placeholder" />
+        <TextView
+            android:id="@+id/performerMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/performer_mes_placeholder" />
+
+        <TextView
+            android:id="@+id/performerYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/performer_year_placeholder" />
 
     </LinearLayout>
 </LinearLayout>

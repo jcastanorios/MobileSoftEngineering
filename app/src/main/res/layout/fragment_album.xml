@@ -31,22 +31,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:gravity="start">
+                android:gravity="start"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/albumListTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/nunito_bold"
                     android:lineSpacingExtra="2sp"
                     android:text="@string/albumes_title"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/albumForwardButton"
@@ -76,22 +76,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:gravity="start">
+                android:gravity="start"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/performerListTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/nunito_bold"
                     android:lineSpacingExtra="2sp"
                     android:text="@string/performers_title"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/performerForwardButton"
@@ -102,6 +102,11 @@
                     android:src="@drawable/arrow_forward" />
 
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewArtist"
+                android:layout_width="match_parent"
+                android:layout_height="147dp" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

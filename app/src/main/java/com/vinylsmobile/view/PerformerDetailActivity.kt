@@ -12,15 +12,16 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
-import com.vinylsmobile.model.Album
-import com.vinylsmobile.repository.AlbumRepository
-import com.vinylsmobile.view.adapters.AlbumAdapter
-import com.vinylsmobile.viewmodels.AlbumDetailViewModel
-import com.vinylsmobile.viewmodels.AlbumDetailViewModelFactory
-import com.vinylsmobile.viewmodels.AlbumViewModel
-import com.vinylsmobile.viewmodels.AlbumViewModelFactory
+import com.vinylsmobile.model.Performer
+import com.vinylsmobile.repository.PerformerRepository
+import com.vinylsmobile.view.adapters.PerformerAdapter
+import com.vinylsmobile.viewmodels.PerformerDetailViewModel
+import com.vinylsmobile.viewmodels.PerformerDetailViewModelFactory
+import com.vinylsmobile.viewmodels.PerformerViewModel
+import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Locale
+import com.vinylsmobile.model.Musician
 
 class PerformerDetailActivity : AppCompatActivity() {
 
@@ -47,23 +48,27 @@ class PerformerDetailActivity : AppCompatActivity() {
             PerformerDetailViewModel::class.java
         )
         viewModel.performer.observe(this) { performer ->
-            Glide.with(this)
-                .load(performer.image)
-                .into(image)
 
-            title.text = performer.name
-            description.text = performer.description
+            if (performer is Musician) {
+                Glide.with(this)
+                    .load(performer.image)
+                    .into(image)
 
-            val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
-            val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-            val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
-            val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
+                title.text = performer.name
+                description.text = performer.description
 
-            val date = isoFormat.parse(performer.birthDate)
+                val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
+                val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+                val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+                val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
+                val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
 
-            year.text = date?.let { humanReadableFormat.format(it) } ?: performer.birthDate
-            month.text = date?.let { monthFormat.format(it) } ?: performer.birthDate
-            day.text = date?.let { dayFormat.format(it) } ?: performer.birthDate
+                val date = isoFormat.parse(performer.birthDate)
+
+                year.text =  date?.let { yearFormat.format(it) } ?: performer.birthDate
+                month.text = date?.let { monthFormat.format(it) } ?: performer.birthDate
+                day.text = date?.let { dayFormat.format(it) } ?: performer.birthDate
+            }
 
         }
         val performerDetailBackButton = findViewById<ImageButton>(R.id.performerDetailBackButton)

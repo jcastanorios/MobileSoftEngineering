@@ -18,14 +18,6 @@ class PerformerRepository {
     }
 
     suspend fun getPerformerItem(id: Int): IPerformer? {
-        val musician = musicianService.getMusician(id)
-        val band = bandService.getBand(id)
-        if (musician.id == id) {
-            return musician
-        }
-        if (band.id == id) {
-            return band
-        }
-        return null
+        return  musicianService.getMusician(id)
     }
 }
