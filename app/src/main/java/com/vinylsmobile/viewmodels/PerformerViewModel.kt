@@ -1,18 +1,17 @@
 package com.vinylsmobile.viewmodels
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vinylsmobile.model.Musician
+import com.vinylsmobile.model.IPerformer
+import com.vinylsmobile.repository.PerformerRepository
 import kotlinx.coroutines.launch
-import com.vinylsmobile.repository.MusicianRepository
 
-class PerformerViewModel(private val repository: MusicianRepository) : ViewModel() {
-    private val _musicians = MutableLiveData<List<Musician>>()
-    val musicians: LiveData<List<Musician>> get() = _musicians
+class PerformerViewModel(private val repository: PerformerRepository) : ViewModel() {
+    private val _performers = MutableLiveData<List<IPerformer>>()
+    val performers: LiveData<List<IPerformer>> get() = _performers
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
@@ -25,8 +24,8 @@ class PerformerViewModel(private val repository: MusicianRepository) : ViewModel
             _isLoading.postValue(true)
 
             try {
-                val fetchedMusicians = repository.getMusicianList()
-                _musicians.postValue(fetchedMusicians)
+                val fetchedPerformers = repository.getPerformerList()
+                _performers.postValue(fetchedPerformers)
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching performers", e)
                 _errorMessage.postValue(e.message)

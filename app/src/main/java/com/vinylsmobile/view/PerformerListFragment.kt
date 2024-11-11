@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vinylsmobile.R
 import com.vinylsmobile.databinding.FragmentListPerformerBinding
-import com.vinylsmobile.repository.MusicianRepository
+import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.PerformerViewModel
 import com.vinylsmobile.viewmodels.PerformerViewModelFactory
@@ -25,7 +25,7 @@ class PerformerListFragment : Fragment() {
     ): View {
         _binding = FragmentListPerformerBinding.inflate(inflater, container, false)
 
-        val repository = MusicianRepository()
+        val repository = PerformerRepository()
         viewModel = ViewModelProvider(this, PerformerViewModelFactory(repository)).get(PerformerViewModel::class.java)
 
         val spanCount = calculateSpanCount(162) // 162dp es el ancho de cada ítem en item_album.xml
@@ -33,9 +33,9 @@ class PerformerListFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
 
         val context = requireContext()
-        viewModel.musicians.observe(viewLifecycleOwner) { musicians ->
+        viewModel.performers.observe(viewLifecycleOwner) { performers ->
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = PerformerAdapter(context, musicians)
+            binding.recyclerView.adapter = PerformerAdapter(context, performers)
         }
         binding.performerBackButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
