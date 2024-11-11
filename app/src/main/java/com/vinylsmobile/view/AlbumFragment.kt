@@ -50,11 +50,9 @@ class AlbumFragment : Fragment() {
 
         binding.progressBar.visibility = View.VISIBLE
 
-        // Observa el estado de carga de ambos ViewModels
         val observer = { isLoading: Boolean ->
             val albumIsLoading = albumViewModel.isLoading.value ?: false
             val performerIsLoading = performerViewModel.isLoading.value ?: false
-            // Si cualquiera de los dos está cargando, muestra la barra de progreso
             binding.progressBar.visibility = if (albumIsLoading || performerIsLoading) View.VISIBLE else View.GONE
         }
 
