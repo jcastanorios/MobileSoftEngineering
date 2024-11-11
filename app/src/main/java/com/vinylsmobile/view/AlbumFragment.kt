@@ -61,40 +61,26 @@ class AlbumFragment : Fragment() {
                 binding.recyclerView.adapter = AlbumAdapter(context, albums)
             }
         }
-        binding.albumForwardButton.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumListFragment())
-                .addToBackStack(null)
-                .commit()
-        }
-        binding.albumListTitle.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumListFragment())
-                .addToBackStack(null)
-                .commit()
-        }
 
-        binding.performerForwardButton.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, PerformerListFragment())
-                .addToBackStack(null)
-                .commit()
-        }
-        binding.performerListTitle.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, PerformerListFragment())
-                .addToBackStack(null)
-                .commit()
-        }
+        binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
+        binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
+        binding.performerForwardButton.setOnClickListener { navigateTo(PerformerListFragment()) }
+        binding.performerListTitle.setOnClickListener { navigateTo(PerformerListFragment()) }
+
 
 
         viewModel.loadAlbums()
 
         return binding.root
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun navigateTo(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
