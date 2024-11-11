@@ -22,7 +22,7 @@ import com.vinylsmobile.viewmodels.AlbumViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class AlbumDetailActivity : AppCompatActivity() {
+class PerformerDetailActivity : AppCompatActivity() {
 
     private lateinit var viewModel: AlbumDetailViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
