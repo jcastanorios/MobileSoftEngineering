@@ -61,12 +61,6 @@ class AlbumFragment : Fragment() {
                 binding.recyclerView.adapter = AlbumAdapter(context, albums)
             }
         }
-        private fun navigateTo(fragment: Fragment) {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
-        }
 
         binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
         binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
@@ -79,9 +73,14 @@ class AlbumFragment : Fragment() {
 
         return binding.root
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun navigateTo(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
