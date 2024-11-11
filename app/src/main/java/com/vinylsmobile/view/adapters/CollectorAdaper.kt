@@ -17,10 +17,18 @@ class CollectorAdaper(private val context: Context, private val collectors: List
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val collector = collectors[position]
+        val initials = getInitials(collector.name)
         holder.binding.collectorName.text = collector.name
+        holder.binding.collectorCover.text = initials
     }
 
     override fun getItemCount() = collectors.size
+
+    private fun getInitials(name: String): String {
+        val parts = name.split(" ")
+        val initials = parts.take(2).joinToString("") { it.take(1).uppercase() }
+        return initials
+    }
 
     class ViewHolder(val binding: ItemCollectorBinding) : RecyclerView.ViewHolder(binding.root)
 }
