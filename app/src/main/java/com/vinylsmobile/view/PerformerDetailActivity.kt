@@ -24,49 +24,55 @@ import java.util.Locale
 
 class PerformerDetailActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: AlbumDetailViewModel
+    private lateinit var viewModel: PerformerDetailViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_album_detail)
+        setContentView(R.layout.activity_performer_detail)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val image = findViewById<ImageView>(R.id.albumCover)
-        val title = findViewById<TextView>(R.id.albumName)
-        val description = findViewById<TextView>(R.id.albumDescription)
-        val year = findViewById<TextView>(R.id.albumYear)
-        val genre = findViewById<TextView>(R.id.albumGenre)
-        val label = findViewById<TextView>(R.id.albumLabel)
+        val image = findViewById<ImageView>(R.id.performerImageDetail)
+        val title = findViewById<TextView>(R.id.performerNameDetail)
+        val description = findViewById<TextView>(R.id.performerDescription)
+        val year = findViewById<TextView>(R.id.performerYear)
+        val day = findViewById<TextView>(R.id.performerDay)
+        val month = findViewById<TextView>(R.id.performerMonth)
 
-        val repository = AlbumRepository()
-        viewModel = ViewModelProvider(this, AlbumDetailViewModelFactory(repository)).get(
-            AlbumDetailViewModel::class.java)
-        viewModel.album.observe(this) { album ->
+        val repository = PerformerRepository()
+        viewModel = ViewModelProvider(this, PerformerDetailViewModelFactory(repository)).get(
+            PerformerDetailViewModel::class.java
+        )
+        viewModel.performer.observe(this) { performer ->
             Glide.with(this)
-                .load(album.cover)
+                .load(performer.image)
                 .into(image)
 
-            title.text=album.name
-            description.text=album.description
-            year.text=album.releaseDate
+            title.text = performer.name
+            description.text = performer.description
+
             val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
             val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-            val date = isoFormat.parse(album.releaseDate)
-            year.text = if (date != null) humanReadableFormat.format(date) else album.releaseDate
-            genre.text=album.genre
-            label.text=album.recordLabel
-        }
-        val albumDetailBackButton = findViewById<ImageButton>(R.id.albumDetailBackButton)
+            val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
+            val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
 
-        albumDetailBackButton.setOnClickListener {
+            val date = isoFormat.parse(performer.birthDate)
+
+            year.text = date?.let { humanReadableFormat.format(it) } ?: performer.birthDate
+            month.text = date?.let { monthFormat.format(it) } ?: performer.birthDate
+            day.text = date?.let { dayFormat.format(it) } ?: performer.birthDate
+
+        }
+        val performerDetailBackButton = findViewById<ImageButton>(R.id.performerDetailBackButton)
+
+        performerDetailBackButton.setOnClickListener {
             finish()
         }
 
-        val albumID = intent.getIntExtra("albumID", 0)
-        viewModel.loadAlbum(albumID)
+        val performerID = intent.getIntExtra("performerID", 0)
+        viewModel.loadPerformer(performerID)
     }
 }

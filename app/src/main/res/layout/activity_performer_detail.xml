@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/performerCover"
+            android:id="@+id/performerImageDetail"
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:contentDescription="@string/performer_cover_photo"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/performerName"
+            android:id="@+id/performerNameDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -81,21 +81,21 @@
         android:layout_marginEnd="8dp" />
 
     <TextView
-        android:id="@+id/performerAnio"
+        android:id="@+id/performerYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/performer_year_placeholder"
         android:layout_marginEnd="8dp" /> <!-- Menor margen entre TextViews -->
 
     <TextView
-        android:id="@+id/performerMes"
+        android:id="@+id/performerMonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/performer_mes_placeholder"
         android:layout_marginEnd="8dp" /> <!-- Menor margen entre TextViews -->
 
     <TextView
-        android:id="@+id/performeDia"
+        android:id="@+id/performerDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/performer_dia_placeholder" />
