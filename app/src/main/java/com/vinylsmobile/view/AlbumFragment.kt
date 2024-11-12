@@ -18,6 +18,8 @@ import com.vinylsmobile.viewmodels.PerformerViewModel
 import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import com.vinylsmobile.R
 import android.widget.Toast
+import com.vinylsmobile.view.adapters.CollectorAdaper
+import com.vinylsmobile.viewmodels.CollectorViewModel
 
 class AlbumFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
@@ -25,6 +27,7 @@ class AlbumFragment : Fragment() {
 
     private lateinit var albumViewModel: AlbumViewModel
     private lateinit var performerViewModel: PerformerViewModel
+    private lateinit var collectorViewModel: CollectorViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -53,7 +56,8 @@ class AlbumFragment : Fragment() {
         val observer = { isLoading: Boolean ->
             val albumIsLoading = albumViewModel.isLoading.value ?: false
             val performerIsLoading = performerViewModel.isLoading.value ?: false
-            binding.progressBar.visibility = if (albumIsLoading || performerIsLoading) View.VISIBLE else View.GONE
+            binding.progressBar.visibility =
+                if (albumIsLoading || performerIsLoading) View.VISIBLE else View.GONE
         }
 
         albumViewModel.isLoading.observe(viewLifecycleOwner, observer)
@@ -89,14 +93,39 @@ class AlbumFragment : Fragment() {
             }
         }
 
+        collectorViewModel.collectors.observe(viewLifecycleOwner) { collectors ->
+            if (collectors.isEmpty()) {
+                Toast.makeText(context, "No hay coleccionistas disponibles", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                binding.recyclerViewCollector.adapter =
+                    CollectorAdaper(requireContext(), collectors)
+            }
+        }
+
         albumViewModel.loadAlbums()
         performerViewModel.loadPerformers()
 
+        binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
+        binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
+        binding.performerForwardButton.setOnClickListener { navigateTo(PerformerListFragment()) }
+        binding.performerListTitle.setOnClickListener { navigateTo(PerformerListFragment()) }
+        binding.collectorForwardButton.setOnClickListener { navigateTo(CollectorListFragment()) }
+        binding.collectorListTitle.setOnClickListener { navigateTo(CollectorListFragment()) }
+
+        viewModel.loadAlbums()
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun navigateTo(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

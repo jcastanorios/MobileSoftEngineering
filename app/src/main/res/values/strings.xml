@@ -23,4 +23,6 @@
     <string name="performer_year_placeholder">Año</string>
     <string name="performer_mes_placeholder">Mes</string>
     <string name="performer_dia_placeholder">Día</string>
+    <string name="collectors_title">Coleccionistas</string>
+    <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
 </resources>
