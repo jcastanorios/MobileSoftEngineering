@@ -20,6 +20,8 @@ import com.vinylsmobile.R
 import android.widget.Toast
 import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
+import com.vinylsmobile.repository.CollectorRepository
+import com.vinylsmobile.viewmodels.CollectorViewModelFactory
 
 class AlbumFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
@@ -46,9 +48,17 @@ class AlbumFragment : Fragment() {
             PerformerViewModelFactory(performerRepository)
         ).get(PerformerViewModel::class.java)
 
+        val collectorRepository = CollectorRepository()
+        collectorViewModel = ViewModelProvider(
+            this,
+            CollectorViewModelFactory(collectorRepository)
+        ).get(CollectorViewModel::class.java)
+
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewArtist.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewCollector.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         binding.progressBar.visibility = View.VISIBLE
@@ -56,12 +66,15 @@ class AlbumFragment : Fragment() {
         val observer = { isLoading: Boolean ->
             val albumIsLoading = albumViewModel.isLoading.value ?: false
             val performerIsLoading = performerViewModel.isLoading.value ?: false
+            val collectorIsLoading = collectorViewModel.isLoading.value ?: false
+
             binding.progressBar.visibility =
-                if (albumIsLoading || performerIsLoading) View.VISIBLE else View.GONE
+                if (albumIsLoading || performerIsLoading || collectorIsLoading) View.VISIBLE else View.GONE
         }
 
         albumViewModel.isLoading.observe(viewLifecycleOwner, observer)
         performerViewModel.isLoading.observe(viewLifecycleOwner, observer)
+        collectorViewModel.isLoading.observe(viewLifecycleOwner, observer)
 
         albumViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             errorMessage?.let {
@@ -74,6 +87,13 @@ class AlbumFragment : Fragment() {
             errorMessage?.let {
                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                 performerViewModel.resetErrorMessage()
+            }
+        }
+
+        collectorViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                collectorViewModel.resetErrorMessage()
             }
         }
 
@@ -105,6 +125,8 @@ class AlbumFragment : Fragment() {
 
         albumViewModel.loadAlbums()
         performerViewModel.loadPerformers()
+        collectorViewModel.loadCollectors()
+
 
         binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
         binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
@@ -113,7 +135,6 @@ class AlbumFragment : Fragment() {
         binding.collectorForwardButton.setOnClickListener { navigateTo(CollectorListFragment()) }
         binding.collectorListTitle.setOnClickListener { navigateTo(CollectorListFragment()) }
 
-        viewModel.loadAlbums()
         return binding.root
     }
 
