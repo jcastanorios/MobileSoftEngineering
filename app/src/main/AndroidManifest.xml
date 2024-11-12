@@ -15,6 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VinylsMobile"
         tools:targetApi="31">
+        <service
+            android:name=".service.CollectorService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".service.Collector"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".view.AlbumDetailActivity"
             android:exported="false" />
@@ -31,8 +40,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
