@@ -20,6 +20,7 @@
     <string name="performer_title_placeholder">Performer</string>
     <string name="performer_description">Description</string>
     <string name="fec_nac_placeholder">Fecha de nacimiento:</string>
+    <string name="fec_crea_placeholder">Fecha de creación:</string>
     <string name="performer_year_placeholder">Año</string>
     <string name="performer_mes_placeholder">Mes</string>
     <string name="performer_dia_placeholder">Día</string>

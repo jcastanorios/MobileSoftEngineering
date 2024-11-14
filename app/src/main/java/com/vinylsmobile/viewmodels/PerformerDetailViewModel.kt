@@ -18,7 +18,11 @@ class PerformerDetailViewModel(private val repository: PerformerRepository) : Vi
         viewModelScope.launch {
             try {
                 val fetchedPerformer = repository.getPerformerItem(id)
-                _performer.postValue(fetchedPerformer)
+                if (fetchedPerformer != null) {
+                    _performer.postValue(fetchedPerformer)
+                } else {
+                    Log.e("ViewModel", "Performer not found")
+                }
 
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching performer", e)

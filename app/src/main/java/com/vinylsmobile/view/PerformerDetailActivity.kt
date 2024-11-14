@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
+import com.vinylsmobile.model.Band
 import com.vinylsmobile.model.Performer
 import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.view.adapters.PerformerAdapter
@@ -42,6 +43,7 @@ class PerformerDetailActivity : AppCompatActivity() {
         val year = findViewById<TextView>(R.id.performerYear)
         val day = findViewById<TextView>(R.id.performerDay)
         val month = findViewById<TextView>(R.id.performerMonth)
+        val dateLabel = findViewById<TextView>(R.id.performerFecNaci)
 
         val repository = PerformerRepository()
         viewModel = ViewModelProvider(this, PerformerDetailViewModelFactory(repository)).get(
@@ -49,25 +51,34 @@ class PerformerDetailActivity : AppCompatActivity() {
         )
         viewModel.performer.observe(this) { performer ->
 
+            Glide.with(this)
+                .load(performer.image)
+                .into(image)
+
+            title.text = performer.name
+            description.text = performer.description
+
+            val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
+            val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+            val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+            val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
+            val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
+
             if (performer is Musician) {
-                Glide.with(this)
-                    .load(performer.image)
-                    .into(image)
-
-                title.text = performer.name
-                description.text = performer.description
-
-                val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
-                val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-                val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
-                val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
-                val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
-
                 val date = isoFormat.parse(performer.birthDate)
 
                 year.text =  date?.let { yearFormat.format(it) } ?: performer.birthDate
                 month.text = date?.let { monthFormat.format(it) } ?: performer.birthDate
                 day.text = date?.let { dayFormat.format(it) } ?: performer.birthDate
+                dateLabel.text = getString(R.string.fec_nac_placeholder)
+
+            } else if (performer is Band) {
+                val date = isoFormat.parse(performer.creationDate)
+
+                year.text =  date?.let { yearFormat.format(it) } ?: performer.creationDate
+                month.text = date?.let { monthFormat.format(it) } ?: performer.creationDate
+                day.text = date?.let { dayFormat.format(it) } ?: performer.creationDate
+                dateLabel.text = getString(R.string.fec_crea_placeholder)
             }
 
         }
