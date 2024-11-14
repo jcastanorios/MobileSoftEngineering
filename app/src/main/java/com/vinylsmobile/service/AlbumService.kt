@@ -8,10 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class AlbumService private constructor() {
 
     private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://backvynils-q6yc.onrender.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        return Retrofit.Builder().baseUrl("https://backvynils-q6yc.onrender.com/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     private val albumApi: AlbumApi by lazy {
@@ -22,14 +20,13 @@ class AlbumService private constructor() {
         @Volatile
         private var instance: AlbumService? = null
 
-        fun getInstance(): AlbumService =
-            instance ?: synchronized(this) {
-                instance ?: AlbumService().also { instance = it }
-            }
+        fun getInstance(): AlbumService = instance ?: synchronized(this) {
+            instance ?: AlbumService().also { instance = it }
+        }
     }
 
-    suspend fun getAlbums(): List<Album> {
-        return albumApi.getAlbumList()
+    suspend fun getAlbums(limit: Int): List<Album> {
+        return albumApi.getAlbumList().take(limit)
     }
 
     suspend fun getAlbum(id: Int): Album {

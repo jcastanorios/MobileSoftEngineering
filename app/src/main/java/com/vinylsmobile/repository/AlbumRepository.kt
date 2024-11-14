@@ -6,8 +6,8 @@ import com.vinylsmobile.model.Album
 class AlbumRepository {
     private val albumService = AlbumService.getInstance()
 
-    suspend fun getAlbumList(): List<Album> {
-        return albumService.getAlbums()
+    suspend fun getAlbumList(limit: Int): List<Album> {
+        return albumService.getAlbums(limit)
     }
 
     suspend fun getAlbumItem(id: Int): Album {
