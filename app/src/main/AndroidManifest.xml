@@ -28,6 +28,9 @@
             android:name=".view.AlbumDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".view.PerformerDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.CollectionActivity"
             android:exported="false"
             android:label="@string/title_activity_collection"

@@ -3,6 +3,7 @@ package com.vinylsmobile.repository
 import com.vinylsmobile.model.IPerformer
 import com.vinylsmobile.service.BandService
 import com.vinylsmobile.service.MusicianService
+import retrofit2.HttpException
 
 class PerformerRepository {
     private val musicianService = MusicianService.getInstance()
@@ -18,13 +19,19 @@ class PerformerRepository {
     }
 
     suspend fun getPerformerItem(id: Int): IPerformer? {
-        val musician = musicianService.getMusician(id)
-        val band = bandService.getBand(id)
-        if (musician.id == id) {
-            return musician
-        }
-        if (band.id == id) {
-            return band
+        try {
+            return  musicianService.getMusician(id);
+        } catch (e: Exception) {
+            if (e is HttpException && e.code() == 404) {
+                try {
+                    val band = bandService.getBand(id);
+                    return band;
+                } catch (e: Exception) {
+                    if (e is HttpException && e.code() == 404) {
+                        return null
+                    }
+                }
+            }
         }
         return null
     }

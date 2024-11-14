@@ -28,9 +28,12 @@ class AlbumListFragment : Fragment() {
         _binding = FragmentListAlbumBinding.inflate(inflater, container, false)
 
         val repository = AlbumRepository()
-        viewModel = ViewModelProvider(this, AlbumViewModelFactory(repository)).get(AlbumViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            AlbumViewModelFactory(repository)
+        ).get(AlbumViewModel::class.java)
 
-        val spanCount = calculateSpanCount(162) // 162dp es el ancho de cada ítem en item_album.xml
+        val spanCount = calculateSpanCount(162)
         binding.recyclerView.layoutManager = GridLayoutManager(context, spanCount)
         binding.progressBar.visibility = View.VISIBLE
 

@@ -16,8 +16,14 @@
     <string name="performer_detail_back">Performer detail back button</string>
     <string name="performers_title">Artistas</string>
     <string name="performer_forward_button">Ir a la lista de artistas</string>
+    <string name="performer_image">Performer image</string>
+    <string name="performer_title_placeholder">Performer</string>
+    <string name="performer_description">Description</string>
+    <string name="fec_nac_placeholder">Fecha de nacimiento:</string>
+    <string name="fec_crea_placeholder">Fecha de creación:</string>
+    <string name="performer_year_placeholder">Año</string>
+    <string name="performer_mes_placeholder">Mes</string>
+    <string name="performer_dia_placeholder">Día</string>
     <string name="collectors_title">Coleccionistas</string>
     <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

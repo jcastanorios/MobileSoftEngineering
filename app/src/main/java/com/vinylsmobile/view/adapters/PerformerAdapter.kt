@@ -1,12 +1,15 @@
 package com.vinylsmobile.view.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vinylsmobile.databinding.ItemPerformerBinding
 import com.vinylsmobile.model.IPerformer
+import com.vinylsmobile.view.PerformerDetailActivity
 
 class PerformerAdapter(private val context: Context, private val performers: List<IPerformer> ) :
     RecyclerView.Adapter<PerformerAdapter.ViewHolder>() {
@@ -22,6 +25,14 @@ class PerformerAdapter(private val context: Context, private val performers: Lis
         Glide.with(holder.binding.root)
             .load(performer.image)
             .into(holder.binding.performerImage)
+
+        val performerButton: CardView = holder.binding.performerCard
+        performerButton.setOnClickListener {
+            val intent = Intent(context, PerformerDetailActivity::class.java)
+
+            intent.putExtra("performerID",performer.id)
+            context.startActivity(intent)
+        }
 
     }
 
