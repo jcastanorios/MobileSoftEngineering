@@ -39,7 +39,7 @@ class PerformerListFragment : Fragment() {
         }
         binding.performerBackButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumFragment())
+                .replace(R.id.fragment_container, CollectionFragment())
                 .addToBackStack(null)
                 .commit()
         }

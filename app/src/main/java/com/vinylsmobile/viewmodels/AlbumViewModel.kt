@@ -20,12 +20,12 @@ class AlbumViewModel(private val repository: AlbumRepository) : ViewModel() {
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
-    fun loadAlbums() {
+    fun loadAlbums(limit: Int? = null) {
         viewModelScope.launch {
             _isLoading.postValue(true)
 
             try {
-                val fetchedAlbums = repository.getAlbumList()
+                val fetchedAlbums = repository.getAlbumList(limit = limit ?: Int.MAX_VALUE)
                 _albums.postValue(fetchedAlbums)
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching albums", e)

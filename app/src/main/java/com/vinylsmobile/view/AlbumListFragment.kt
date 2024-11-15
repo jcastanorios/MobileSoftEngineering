@@ -44,7 +44,7 @@ class AlbumListFragment : Fragment() {
         }
         binding.albumBackButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumFragment())
+                .replace(R.id.fragment_container, CollectionFragment())
                 .addToBackStack(null)
                 .commit()
         }

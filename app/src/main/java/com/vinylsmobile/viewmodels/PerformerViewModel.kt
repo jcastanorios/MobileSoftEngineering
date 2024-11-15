@@ -19,12 +19,12 @@ class PerformerViewModel(private val repository: PerformerRepository) : ViewMode
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
-    fun loadPerformers() {
+    fun loadPerformers(limit: Int? = null) {
         viewModelScope.launch {
             _isLoading.postValue(true)
 
             try {
-                val fetchedPerformers = repository.getPerformerList()
+                val fetchedPerformers = repository.getPerformerList(limit)
                 _performers.postValue(fetchedPerformers)
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching performers", e)

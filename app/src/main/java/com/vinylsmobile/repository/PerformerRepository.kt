@@ -9,18 +9,23 @@ class PerformerRepository {
     private val musicianService = MusicianService.getInstance()
     private val bandService = BandService.getInstance()
 
-    suspend fun getPerformerList(): List<IPerformer> {
+    suspend fun getPerformerList(limit: Int? = null): List<IPerformer> {
         val bands = bandService.getBands()
         val musicians = musicianService.getMusicians()
         val performers = mutableListOf<IPerformer>()
         performers.addAll(musicians)
         performers.addAll(bands)
-        return performers.sortedBy { it.name }
+
+        return if (limit != null) {
+            performers.sortedBy { it.name }.take(limit)
+        } else {
+            performers.sortedBy { it.name }
+        }
     }
 
     suspend fun getPerformerItem(id: Int): IPerformer? {
         try {
-            return  musicianService.getMusician(id);
+            return musicianService.getMusician(id);
         } catch (e: Exception) {
             if (e is HttpException && e.code() == 404) {
                 try {
