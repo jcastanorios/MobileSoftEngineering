@@ -21,9 +21,10 @@ import android.widget.Toast
 import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
 import com.vinylsmobile.repository.CollectorRepository
+import com.vinylsmobile.view.adapters.CollectionAdapter
 import com.vinylsmobile.viewmodels.CollectorViewModelFactory
 
-class AlbumFragment : Fragment() {
+class CollectionFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
     private val binding get() = _binding!!
 
@@ -101,7 +102,7 @@ class AlbumFragment : Fragment() {
             if (albums.isEmpty()) {
                 Toast.makeText(context, "No hay álbumes disponibles", Toast.LENGTH_SHORT).show()
             } else {
-                binding.recyclerView.adapter = AlbumAdapter(requireContext(), albums)
+                binding.recyclerView.adapter = CollectionAdapter(requireContext(), albums, viewMoreText = "Ver más álbumes")
             }
         }
 
@@ -109,7 +110,7 @@ class AlbumFragment : Fragment() {
             if (performers.isEmpty()) {
                 Toast.makeText(context, "No hay artistas disponibles", Toast.LENGTH_SHORT).show()
             } else {
-                binding.recyclerViewArtist.adapter = PerformerAdapter(requireContext(), performers)
+                binding.recyclerViewArtist.adapter = CollectionAdapter(requireContext(), performers, viewMoreText = "Ver más artistas")
             }
         }
 
@@ -123,8 +124,8 @@ class AlbumFragment : Fragment() {
             }
         }
 
-        albumViewModel.loadAlbums()
-        performerViewModel.loadPerformers()
+        albumViewModel.loadAlbums(limit = 2)
+        performerViewModel.loadPerformers(limit = 2)
         collectorViewModel.loadCollectors()
 
 
