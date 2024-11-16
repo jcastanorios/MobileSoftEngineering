@@ -5,10 +5,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import com.vinylsmobile.database.dao.AlbumsDao
-import com.vinylsmobile.database.dao.CollectorsDao
 import com.vinylsmobile.service.AlbumService
 import com.vinylsmobile.model.Album
-import com.vinylsmobile.model.Collector
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vinylsmobile.R
 import com.vinylsmobile.databinding.FragmentListCollectorBinding
-import com.vinylsmobile.repository.CollectorRepository
 import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
 

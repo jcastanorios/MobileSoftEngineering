@@ -2,7 +2,8 @@ package com.vinylsmobile.model
 
 enum class PerformerType {
     ARTIST,
-    BAND
+    BAND,
+    UNKNOWN
 }
 
 interface IPerformer {

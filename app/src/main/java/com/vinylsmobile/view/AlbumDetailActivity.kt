@@ -12,9 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
-import com.vinylsmobile.model.Album
-import com.vinylsmobile.repository.AlbumRepository
-import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.viewmodels.AlbumDetailViewModel
 
 
