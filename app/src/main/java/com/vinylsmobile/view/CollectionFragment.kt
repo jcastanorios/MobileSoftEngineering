@@ -49,10 +49,14 @@ class CollectionFragment : Fragment() {
             PerformerViewModelFactory(performerRepository)
         ).get(PerformerViewModel::class.java)
 
-        val collectorRepository = CollectorRepository()
-        collectorViewModel = ViewModelProvider(
+        //val collectorRepository = CollectorRepository()
+        /*collectorViewModel = ViewModelProvider(
             this,
             CollectorViewModelFactory(collectorRepository)
+        ).get(CollectorViewModel::class.java)*/
+        val collectorViewModel = ViewModelProvider(
+            this,
+            CollectorViewModel.CollectorViewModelFactory(requireActivity().application)
         ).get(CollectorViewModel::class.java)
 
         binding.recyclerView.layoutManager =
