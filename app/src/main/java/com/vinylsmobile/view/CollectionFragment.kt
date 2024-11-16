@@ -7,22 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vinylsmobile.repository.AlbumRepository
-import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
-import com.vinylsmobile.view.adapters.AlbumAdapter
-import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
-import com.vinylsmobile.viewmodels.AlbumViewModelFactory
 import com.vinylsmobile.viewmodels.PerformerViewModel
-import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import com.vinylsmobile.R
 import android.widget.Toast
 import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
-import com.vinylsmobile.repository.CollectorRepository
 import com.vinylsmobile.view.adapters.CollectionAdapter
-import com.vinylsmobile.viewmodels.CollectorViewModelFactory
 
 class CollectionFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
@@ -37,22 +29,24 @@ class CollectionFragment : Fragment() {
     ): View {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
-        val albumRepository = AlbumRepository()
+        /*Nueva forma de llamar al Album*/
         albumViewModel = ViewModelProvider(
             this,
-            AlbumViewModelFactory(albumRepository)
+            AlbumViewModel.AlbumViewModelFactory(requireActivity().application)
         ).get(AlbumViewModel::class.java)
 
-        val performerRepository = PerformerRepository()
+
+        /*Nueva forma de llamar al Album*/
         performerViewModel = ViewModelProvider(
             this,
-            PerformerViewModelFactory(performerRepository)
+            PerformerViewModel.PerformerViewModelFactory(requireActivity().application)
         ).get(PerformerViewModel::class.java)
 
-        val collectorRepository = CollectorRepository()
-        collectorViewModel = ViewModelProvider(
+
+        /*Nueva forma de llamar al Colector*/
+        val collectorViewModel = ViewModelProvider(
             this,
-            CollectorViewModelFactory(collectorRepository)
+            CollectorViewModel.CollectorViewModelFactory(requireActivity().application)
         ).get(CollectorViewModel::class.java)
 
         binding.recyclerView.layoutManager =

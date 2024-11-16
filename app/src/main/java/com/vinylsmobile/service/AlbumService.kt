@@ -26,7 +26,9 @@ class AlbumService private constructor() {
     }
 
     suspend fun getAlbums(limit: Int): List<Album> {
-        return albumApi.getAlbumList().take(limit)
+        return albumApi.getAlbumList()
+            .sortedBy { it.name }
+            .take(limit)
     }
 
     suspend fun getAlbum(id: Int): Album {

@@ -1,7 +1,6 @@
 package com.vinylsmobile.view
 
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,16 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
 import com.vinylsmobile.model.Band
-import com.vinylsmobile.model.Performer
-import com.vinylsmobile.repository.PerformerRepository
-import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.PerformerDetailViewModel
-import com.vinylsmobile.viewmodels.PerformerDetailViewModelFactory
-import com.vinylsmobile.viewmodels.PerformerViewModel
-import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Locale
 import com.vinylsmobile.model.Musician
+
 
 class PerformerDetailActivity : AppCompatActivity() {
 
@@ -45,10 +39,12 @@ class PerformerDetailActivity : AppCompatActivity() {
         val month = findViewById<TextView>(R.id.performerMonth)
         val dateLabel = findViewById<TextView>(R.id.performerFecNaci)
 
-        val repository = PerformerRepository()
-        viewModel = ViewModelProvider(this, PerformerDetailViewModelFactory(repository)).get(
-            PerformerDetailViewModel::class.java
-        )
+        /*Nueva forma de llamar al Album*/
+        viewModel = ViewModelProvider(
+            this,
+            PerformerDetailViewModel.PerformerDetailViewModelFactory(application)
+        ).get(PerformerDetailViewModel::class.java)
+
         viewModel.performer.observe(this) { performer ->
 
             Glide.with(this)

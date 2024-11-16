@@ -2,7 +2,6 @@ package com.vinylsmobile.service
 
 import com.vinylsmobile.data.api.BandApi
 import com.vinylsmobile.model.Band
-import com.vinylsmobile.model.Musician
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
