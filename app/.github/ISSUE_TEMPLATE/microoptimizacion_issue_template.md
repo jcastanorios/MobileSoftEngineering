@@ -1,7 +1,6 @@
 ## Descripción del problema
 
-Describir muy concretamente donde se va a aplicar la micro-optimización y motivo por el cual beneficia 
-el rendimiento de la aplicación.
+Describe de manera concreta dónde se va a aplicar la micro-optimización y el motivo por el cual beneficiará el rendimiento de la aplicación.
 
 ## Afectación
 
@@ -14,11 +13,10 @@ el rendimiento de la aplicación.
 - [ ] Uso inadecuado de una API
 - [ ] Uso inadecuado de componentes
 
-
 ## Dispositivo en el que se verifica el problema y posterior validación de la mejora
 
 - **Dispositivo en el que se realiza la prueba**: [Modelo del teléfono]
-- **Sistema operativo**: []
+- **Sistema operativo**: [Versión del sistema operativo]
 
 ## Comportamiento actual
 
@@ -26,15 +24,14 @@ Describe cómo está funcionando actualmente. ¿Se está produciendo un retraso 
 
 ## Sugerencia de solución
 
-Describe que microoptimización podría realizarse para mitigar o resolver el problema descrito por que atravieza la aplicación
+Describe qué micro-optimización podría realizarse para mitigar o resolver el problema descrito, mejorando el rendimiento de la aplicación.
 
 ## Revisión del rendimiento actual
 
-- **Perfilamiento**:[coloque herramienta usada para perfilar app]
-
+- **Perfilamiento**: [Herramienta usada para perfilar la app]
 - **Consumo de CPU**: ¿Existen anormalidades en el uso del procesador?
-- **Memoria**: ¿Existen fugas de memoria (meomoery leaks) o un uso excesivo de la memoria (memory bloats)?
-- **Tiempo de carga de la app**: ¿La app se demora para cargar en alguna parte de la app?
+- **Memoria**: ¿Existen fugas de memoria (memory leaks) o un uso excesivo de la memoria (memory bloats)?
+- **Tiempo de carga de la app**: ¿La app se demora en cargar en alguna parte de la app?
 
 ## ¿Qué micro-optimización podría aplicarse?
 
@@ -44,10 +41,9 @@ Describe que microoptimización podría realizarse para mitigar o resolver el pr
 - [ ] Mejoras en la eficiencia de red (por ejemplo, reducción de solicitudes)
 - [ ] Optimización de renderizado (por ejemplo, mejoras en las animaciones o UI)
 - [ ] Refactorización
-- [ ] Corutinas
-- [ ] Almacenamiento temporal catching
-
+- [ ] Uso de corutinas
+- [ ] Almacenamiento temporal (caching)
 
 ## Evidencias
 
-Se pueden adjuntar algunas capturas de pantalla para verificar el problema que se esta identificando.
+Adjunta capturas de pantalla o registros que ayuden a verificar el problema identificado.
