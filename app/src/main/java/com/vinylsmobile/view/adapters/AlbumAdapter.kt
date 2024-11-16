@@ -11,8 +11,10 @@ import com.vinylsmobile.model.Album
 import com.vinylsmobile.view.AlbumDetailActivity
 import com.vinylsmobile.databinding.ItemAlbumBinding
 
-class AlbumAdapter(private val context: Context, private val albums: List<Album> ) :
+class AlbumAdapter(private val context: Context) :
     RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
+    //Microoptimizacion: Liberación de memoria
+    private val albums: MutableList<Album> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAlbumBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -36,6 +38,13 @@ class AlbumAdapter(private val context: Context, private val albums: List<Album>
     }
 
     override fun getItemCount() = albums.size
+
+    //Microoptimizacion: Liberación de memoria
+    fun setAlbums(newAlbums: List<Album>) {
+        albums.clear()
+        albums.addAll(newAlbums)
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(val binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root)
 }

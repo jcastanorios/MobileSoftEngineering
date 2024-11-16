@@ -16,6 +16,9 @@ class AlbumListFragment : Fragment() {
     private var _binding: FragmentListAlbumBinding? = null
     private val binding get() = _binding!!
 
+    //Microoptimizacion: Liberación de memoria
+    private lateinit var albumAdapter: AlbumAdapter
+
     private lateinit var viewModel: AlbumViewModel
 
     override fun onCreateView(
@@ -23,7 +26,6 @@ class AlbumListFragment : Fragment() {
     ): View {
         _binding = FragmentListAlbumBinding.inflate(inflater, container, false)
 
-        /*Nueva forma de llamar al Album*/
         viewModel = ViewModelProvider(
             this,
             AlbumViewModel.AlbumViewModelFactory(requireActivity().application)
@@ -33,11 +35,18 @@ class AlbumListFragment : Fragment() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, spanCount)
         binding.progressBar.visibility = View.VISIBLE
 
-        val context = requireContext()
+        //Microoptimizacion liberación de memoria
+        // Crear una instancia única del adaptador
+        albumAdapter = AlbumAdapter(requireContext())
+        binding.recyclerView.adapter = albumAdapter
+
+        // Observa los datos y actualiza el adaptador
         viewModel.albums.observe(viewLifecycleOwner) { albums ->
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = AlbumAdapter(context, albums)
+            //Microoptimizacion Liberación de memoria
+            albumAdapter.setAlbums(albums) // Actualiza los datos del adaptador
         }
+
         binding.albumBackButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, CollectionFragment())
@@ -52,6 +61,8 @@ class AlbumListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Crear una instancia única del adaptador
+        binding.recyclerView.adapter = null
         _binding = null
     }
 
