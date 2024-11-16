@@ -13,7 +13,6 @@ import com.vinylsmobile.databinding.FragmentAlbumBinding
 import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
-import com.vinylsmobile.viewmodels.AlbumViewModelFactory
 import com.vinylsmobile.viewmodels.PerformerViewModel
 import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import com.vinylsmobile.R
@@ -22,7 +21,6 @@ import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
 import com.vinylsmobile.repository.CollectorRepository
 import com.vinylsmobile.view.adapters.CollectionAdapter
-import com.vinylsmobile.viewmodels.CollectorViewModelFactory
 
 class CollectionFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
@@ -37,10 +35,10 @@ class CollectionFragment : Fragment() {
     ): View {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
-        val albumRepository = AlbumRepository()
+        /*Nueva forma de llamar al Album*/
         albumViewModel = ViewModelProvider(
             this,
-            AlbumViewModelFactory(albumRepository)
+            AlbumViewModel.AlbumViewModelFactory(requireActivity().application)
         ).get(AlbumViewModel::class.java)
 
         val performerRepository = PerformerRepository()
@@ -49,11 +47,7 @@ class CollectionFragment : Fragment() {
             PerformerViewModelFactory(performerRepository)
         ).get(PerformerViewModel::class.java)
 
-        //val collectorRepository = CollectorRepository()
-        /*collectorViewModel = ViewModelProvider(
-            this,
-            CollectorViewModelFactory(collectorRepository)
-        ).get(CollectorViewModel::class.java)*/
+        /*Nueva forma de llamar al Colector*/
         val collectorViewModel = ViewModelProvider(
             this,
             CollectorViewModel.CollectorViewModelFactory(requireActivity().application)

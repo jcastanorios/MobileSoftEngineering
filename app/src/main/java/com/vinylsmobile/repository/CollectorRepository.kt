@@ -38,6 +38,9 @@ class CollectorRepository(private val application: Application, private val coll
         return collectorService.getCollector(id)
     }
 
+    /*
+    * Verificar si hay conexión a internet
+     */
     private suspend fun isNetworkAvailable(context: Context): Boolean = withContext(Dispatchers.IO) {
         try {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -46,7 +49,6 @@ class CollectorRepository(private val application: Application, private val coll
             return@withContext networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
                     networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
         } catch (e: Exception) {
-            // Maneja cualquier excepción inesperada (por ejemplo, permisos faltantes)
             return@withContext false
         }
     }

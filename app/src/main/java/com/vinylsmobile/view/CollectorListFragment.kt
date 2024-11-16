@@ -12,7 +12,6 @@ import com.vinylsmobile.databinding.FragmentListCollectorBinding
 import com.vinylsmobile.repository.CollectorRepository
 import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
-import com.vinylsmobile.viewmodels.CollectorViewModelFactory
 
 class CollectorListFragment : Fragment() {
     private var _binding: FragmentListCollectorBinding? = null
@@ -28,7 +27,7 @@ class CollectorListFragment : Fragment() {
 
         //val repository = CollectorRepository()
         //viewModel = ViewModelProvider(this, CollectorViewModelFactory(repository)).get(CollectorViewModel::class.java)
-        val viewModel = ViewModelProvider(
+        viewModel = ViewModelProvider(
             this,
             CollectorViewModel.CollectorViewModelFactory(requireActivity().application)
         ).get(CollectorViewModel::class.java)

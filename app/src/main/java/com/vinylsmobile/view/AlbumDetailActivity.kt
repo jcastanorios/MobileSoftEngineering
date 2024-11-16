@@ -16,9 +16,8 @@ import com.vinylsmobile.model.Album
 import com.vinylsmobile.repository.AlbumRepository
 import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.viewmodels.AlbumDetailViewModel
-import com.vinylsmobile.viewmodels.AlbumDetailViewModelFactory
-import com.vinylsmobile.viewmodels.AlbumViewModel
-import com.vinylsmobile.viewmodels.AlbumViewModelFactory
+
+
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -42,9 +41,12 @@ class AlbumDetailActivity : AppCompatActivity() {
         val genre = findViewById<TextView>(R.id.albumGenre)
         val label = findViewById<TextView>(R.id.albumLabel)
 
-        val repository = AlbumRepository()
-        viewModel = ViewModelProvider(this, AlbumDetailViewModelFactory(repository)).get(
-            AlbumDetailViewModel::class.java)
+        /*Nueva forma de llamar al Album*/
+        viewModel = ViewModelProvider(
+            this,
+            AlbumDetailViewModel.AlbumDetailViewModelFactory(application)
+        ).get(AlbumDetailViewModel::class.java)
+
         viewModel.album.observe(this) { album ->
             Glide.with(this)
                 .load(album.cover)

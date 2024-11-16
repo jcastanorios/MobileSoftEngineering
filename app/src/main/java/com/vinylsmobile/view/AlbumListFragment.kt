@@ -14,7 +14,6 @@ import com.vinylsmobile.databinding.FragmentAlbumBinding
 import com.vinylsmobile.databinding.FragmentListAlbumBinding
 import com.vinylsmobile.view.adapters.AlbumAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
-import com.vinylsmobile.viewmodels.AlbumViewModelFactory
 
 class AlbumListFragment : Fragment() {
     private var _binding: FragmentListAlbumBinding? = null
@@ -27,10 +26,10 @@ class AlbumListFragment : Fragment() {
     ): View {
         _binding = FragmentListAlbumBinding.inflate(inflater, container, false)
 
-        val repository = AlbumRepository()
+        /*Nueva forma de llamar al Album*/
         viewModel = ViewModelProvider(
             this,
-            AlbumViewModelFactory(repository)
+            AlbumViewModel.AlbumViewModelFactory(requireActivity().application)
         ).get(AlbumViewModel::class.java)
 
         val spanCount = calculateSpanCount(162)
