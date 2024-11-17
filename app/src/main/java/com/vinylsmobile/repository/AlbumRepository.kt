@@ -25,15 +25,23 @@ class AlbumRepository(private val application: Application, private val albumsDa
 
 
         if (cached.isNullOrEmpty()) {
+
             // Verificar el estado de la red
             if (!isNetworkAvailable(application)) {
                 return@withContext emptyList()
             } else {
                 // Obtener los datos de la red
-                val albumsFromNetwork = albumService.getAlbums(limit)
+                val albumsFromNetwork = albumService.getAlbums(limit).toMutableList()
+
                 // Guardar en la base de datos local
                 albumsDao.insertAll(albumsFromNetwork)
-                return@withContext albumsFromNetwork
+
+                // Limpiar la lista para liberar memoria
+                albumsFromNetwork.clear()
+
+                // Retornar los datos recién guardados en la base de datos
+                return@withContext albumsDao.getAlbums(limit)
+
             }
         } else {
             return@withContext cached

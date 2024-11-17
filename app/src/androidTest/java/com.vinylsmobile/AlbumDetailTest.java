@@ -66,7 +66,8 @@ public class AlbumDetailTest {
                         withText("Sony Music"),
                         withText("Discos Fuentes"),
                         withText("Elektra"),
-                        withText("Fania Records")
+                        withText("Fania Records"),
+                        withText("EMI")
                 )));
 
 
@@ -115,7 +116,8 @@ public class AlbumDetailTest {
                         withText("Sony Music"),
                         withText("Discos Fuentes"),
                         withText("Elektra"),
-                        withText("Fania Records")
+                        withText("Fania Records"),
+                        withText("EMI")
                 )));
 
     }
