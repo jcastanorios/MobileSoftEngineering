@@ -26,5 +26,11 @@
     <string name="performer_dia_placeholder">Día</string>
     <string name="collectors_title">Coleccionistas</string>
     <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
+    <string name="collectors_cover">+</string>
+
     <string name="home_icon_description">Home Icon</string>
+    <string name="main_description">Página principal de acceso a la aplicación</string>
+    <string name="album_cover_description">Imágen del álbum</string>"
+    <string name="performer_image_description">Imágen del artista</string>
+
 </resources>

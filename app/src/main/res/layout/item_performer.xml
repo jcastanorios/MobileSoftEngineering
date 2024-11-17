@@ -24,6 +24,7 @@
                 android:id="@+id/performerImage"
                 android:layout_width="150dp"
                 android:layout_height="137dp"
+                android:contentDescription="@string/album_cover_description"
                 android:scaleType="centerCrop" />
 
             <TextView

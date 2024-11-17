@@ -47,12 +47,13 @@ class PerformerDetailActivity : AppCompatActivity() {
 
         viewModel.performer.observe(this) { performer ->
 
-            Glide.with(this)
-                .load(performer.image)
-                .into(image)
-
-            title.text = performer.name
-            description.text = performer.description
+            if (performer != null) {
+                Glide.with(this)
+                    .load(performer.image)
+                    .into(image)
+                title.text = performer.name
+                description.text = performer.description
+            }
 
             val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
             val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
