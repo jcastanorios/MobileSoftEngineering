@@ -9,10 +9,10 @@ import com.vinylsmobile.model.Band
 import com.vinylsmobile.model.Musician
 import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.viewmodels.PerformerDetailViewModel
-import com.vinylsmobile.viewmodels.PerformerDetailViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Locale
 import androidx.lifecycle.ViewModelProvider
+import com.vinylsmobile.R
 
 class PerformerDetailActivity : AppCompatActivity() {
 
@@ -24,10 +24,10 @@ class PerformerDetailActivity : AppCompatActivity() {
         binding = ActivityPerformerDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = PerformerRepository()
-        viewModel = ViewModelProvider(this, PerformerDetailViewModelFactory(repository)).get(
-            PerformerDetailViewModel::class.java
-        )
+        viewModel = ViewModelProvider(
+            this,
+            PerformerDetailViewModel.PerformerDetailViewModelFactory(application)
+        ).get(PerformerDetailViewModel::class.java)
 
         viewModel.performer.observe(this) { performer ->
             Glide.with(this)
