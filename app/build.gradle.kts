@@ -22,6 +22,10 @@ android {
         }
     }
 
+    viewBinding{
+        enable=true
+    }
+
     buildFeatures {
         dataBinding=true
         compose = true
@@ -77,7 +81,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
-
+    implementation("com.squareup.leakcanary:leakcanary-android:2.13")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

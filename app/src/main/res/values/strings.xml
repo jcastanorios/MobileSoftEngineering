@@ -27,4 +27,7 @@
     <string name="collectors_title">Coleccionistas</string>
     <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
     <string name="home_icon_description">Home Icon</string>
+    <string name="title_activity_performer_detail2">PerformerDetail2</string>
+    <string name="title_activity_performer_details">PerformerDetailsActivity</string>
+    <string name="title_activity_performer_detail">PerformerDetailActivity</string>
 </resources>
