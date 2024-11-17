@@ -9,10 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vinylsmobile.R
 import com.vinylsmobile.databinding.FragmentListPerformerBinding
-import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.PerformerViewModel
-import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 
 class PerformerListFragment : Fragment() {
     private var _binding: FragmentListPerformerBinding? = null
@@ -25,8 +23,11 @@ class PerformerListFragment : Fragment() {
     ): View {
         _binding = FragmentListPerformerBinding.inflate(inflater, container, false)
 
-        val repository = PerformerRepository()
-        viewModel = ViewModelProvider(this, PerformerViewModelFactory(repository)).get(PerformerViewModel::class.java)
+        /*Nueva forma de llamar al Album*/
+        viewModel = ViewModelProvider(
+            this,
+            PerformerViewModel.PerformerViewModelFactory(requireActivity().application)
+        ).get(PerformerViewModel::class.java)
 
         val spanCount = calculateSpanCount(162) // 162dp es el ancho de cada ítem en item_album.xml
         binding.recyclerView.layoutManager = GridLayoutManager(context, spanCount)
@@ -39,7 +40,7 @@ class PerformerListFragment : Fragment() {
         }
         binding.performerBackButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumFragment())
+                .replace(R.id.fragment_container, CollectionFragment())
                 .addToBackStack(null)
                 .commit()
         }

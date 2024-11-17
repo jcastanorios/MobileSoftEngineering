@@ -5,5 +5,6 @@ data class Musician (
     override val name: String,
     override val image: String,
     override val description: String,
+    override val type: PerformerType = PerformerType.ARTIST,
     val birthDate: String
 ): IPerformer

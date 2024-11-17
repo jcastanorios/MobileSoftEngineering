@@ -7,23 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vinylsmobile.repository.AlbumRepository
-import com.vinylsmobile.repository.PerformerRepository
 import com.vinylsmobile.databinding.FragmentAlbumBinding
-import com.vinylsmobile.view.adapters.AlbumAdapter
-import com.vinylsmobile.view.adapters.PerformerAdapter
 import com.vinylsmobile.viewmodels.AlbumViewModel
-import com.vinylsmobile.viewmodels.AlbumViewModelFactory
 import com.vinylsmobile.viewmodels.PerformerViewModel
-import com.vinylsmobile.viewmodels.PerformerViewModelFactory
 import com.vinylsmobile.R
 import android.widget.Toast
 import com.vinylsmobile.view.adapters.CollectorAdaper
 import com.vinylsmobile.viewmodels.CollectorViewModel
-import com.vinylsmobile.repository.CollectorRepository
-import com.vinylsmobile.viewmodels.CollectorViewModelFactory
+import com.vinylsmobile.view.adapters.CollectionAdapter
 
-class AlbumFragment : Fragment() {
+class CollectionFragment : Fragment() {
     private var _binding: FragmentAlbumBinding? = null
     private val binding get() = _binding!!
 
@@ -36,22 +29,24 @@ class AlbumFragment : Fragment() {
     ): View {
         _binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
-        val albumRepository = AlbumRepository()
+        /*Nueva forma de llamar al Album*/
         albumViewModel = ViewModelProvider(
             this,
-            AlbumViewModelFactory(albumRepository)
+            AlbumViewModel.AlbumViewModelFactory(requireActivity().application)
         ).get(AlbumViewModel::class.java)
 
-        val performerRepository = PerformerRepository()
+
+        /*Nueva forma de llamar al Album*/
         performerViewModel = ViewModelProvider(
             this,
-            PerformerViewModelFactory(performerRepository)
+            PerformerViewModel.PerformerViewModelFactory(requireActivity().application)
         ).get(PerformerViewModel::class.java)
 
-        val collectorRepository = CollectorRepository()
-        collectorViewModel = ViewModelProvider(
+
+        /*Nueva forma de llamar al Colector*/
+        val collectorViewModel = ViewModelProvider(
             this,
-            CollectorViewModelFactory(collectorRepository)
+            CollectorViewModel.CollectorViewModelFactory(requireActivity().application)
         ).get(CollectorViewModel::class.java)
 
         binding.recyclerView.layoutManager =
@@ -101,7 +96,7 @@ class AlbumFragment : Fragment() {
             if (albums.isEmpty()) {
                 Toast.makeText(context, "No hay álbumes disponibles", Toast.LENGTH_SHORT).show()
             } else {
-                binding.recyclerView.adapter = AlbumAdapter(requireContext(), albums)
+                binding.recyclerView.adapter = CollectionAdapter(requireContext(), albums, viewMoreText = "Ver más álbumes")
             }
         }
 
@@ -109,7 +104,7 @@ class AlbumFragment : Fragment() {
             if (performers.isEmpty()) {
                 Toast.makeText(context, "No hay artistas disponibles", Toast.LENGTH_SHORT).show()
             } else {
-                binding.recyclerViewArtist.adapter = PerformerAdapter(requireContext(), performers)
+                binding.recyclerViewArtist.adapter = CollectionAdapter(requireContext(), performers, viewMoreText = "Ver más artistas")
             }
         }
 
@@ -123,8 +118,8 @@ class AlbumFragment : Fragment() {
             }
         }
 
-        albumViewModel.loadAlbums()
-        performerViewModel.loadPerformers()
+        albumViewModel.loadAlbums(limit = 2)
+        performerViewModel.loadPerformers(limit = 2)
         collectorViewModel.loadCollectors()
 
 

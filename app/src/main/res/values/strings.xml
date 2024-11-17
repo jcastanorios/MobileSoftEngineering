@@ -26,4 +26,5 @@
     <string name="performer_dia_placeholder">Día</string>
     <string name="collectors_title">Coleccionistas</string>
     <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
+    <string name="home_icon_description">Home Icon</string>
 </resources>

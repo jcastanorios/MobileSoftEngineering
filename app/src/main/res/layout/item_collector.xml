@@ -16,17 +16,17 @@
 
         <LinearLayout
             android:layout_width="162dp"
-            android:layout_height="220dp"
+            android:layout_height="210dp"
             android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/collectorCover"
-                android:layout_width="150dp"
+                android:layout_width="145dp"
                 android:layout_height="137dp"
                 android:background="#61ACE9"
-                android:gravity="center_vertical"
-                android:text="SV"
+                android:gravity="center"
+                android:text="@string/collectors_title"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="60sp"
