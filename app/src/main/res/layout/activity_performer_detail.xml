@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".view.PerformerDetailActivity">
 
+    <!-- Usar ConstraintLayout para la parte superior -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -55,6 +56,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Descripción del Performer -->
     <TextView
         android:id="@+id/performerDescription"
         android:layout_width="match_parent"
@@ -66,6 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Sección de fechas, mantiene la alineación original -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,29 +80,27 @@
             android:id="@+id/performerFecNaci"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/fec_nac_placeholder" />
-
+            android:text="@string/fec_nac_placeholder"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/performerDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/performer_dia_placeholder" />
+            android:text="@string/performer_dia_placeholder"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/performerMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/performer_mes_placeholder" />
+            android:text="@string/performer_mes_placeholder"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/performerYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/performer_year_placeholder" />
-
     </LinearLayout>
 </LinearLayout>
