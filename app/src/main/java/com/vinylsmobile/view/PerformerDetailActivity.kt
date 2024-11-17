@@ -30,12 +30,13 @@ class PerformerDetailActivity : AppCompatActivity() {
         ).get(PerformerDetailViewModel::class.java)
 
         viewModel.performer.observe(this) { performer ->
-            Glide.with(this)
-                .load(performer.image)
-                .into(binding.performerImageDetail)
-
-            binding.performerNameDetail.text = performer.name
-            binding.performerDescription.text = performer.description
+            if (performer != null) {
+                Glide.with(this)
+                    .load(performer.image)
+                    .into(binding.performerImageDetail)
+                binding.performerNameDetail.text = performer.name
+                binding.performerDescription.text = performer.description
+            }
 
             val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
             val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())

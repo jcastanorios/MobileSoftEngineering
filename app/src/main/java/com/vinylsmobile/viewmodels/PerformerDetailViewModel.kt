@@ -3,7 +3,6 @@ package com.vinylsmobile.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -20,18 +19,14 @@ class PerformerDetailViewModel(application: Application) : AndroidViewModel(appl
         com.vinylsmobile.database.VinylRoomDatabase.getDatabase(application).performersDao()
     )
 
-    private val _performer = MutableLiveData<IPerformer>()
-    val performer: LiveData<IPerformer> get() = _performer
+    private val _performer = MutableLiveData<IPerformer?>()
+    val performer: MutableLiveData<IPerformer?> get() = _performer
 
     fun loadPerformer(id: Int) {
         viewModelScope.launch {
             try {
                 val fetchedPerformer = repository.getPerformerItem(id)
-                if (fetchedPerformer != null) {
-                    _performer.postValue(fetchedPerformer)
-                } else {
-                    Log.e("ViewModel", "Performer not found")
-                }
+                _performer.postValue(fetchedPerformer)
 
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching performer", e)
@@ -39,7 +34,8 @@ class PerformerDetailViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
-    class PerformerDetailViewModelFactory(private val application: Application)  : ViewModelProvider.Factory {
+    class PerformerDetailViewModelFactory(private val application: Application) :
+        ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PerformerDetailViewModel::class.java)) {
                 return PerformerDetailViewModel(application) as T
@@ -47,8 +43,4 @@ class PerformerDetailViewModel(application: Application) : AndroidViewModel(appl
             throw IllegalArgumentException("Unknown ViewModel class")
         }
     }
-
-
-
-
 }

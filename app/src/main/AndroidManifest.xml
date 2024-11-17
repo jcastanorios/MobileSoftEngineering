@@ -23,15 +23,6 @@
             android:label="@string/title_activity_performer_detail"
             android:theme="@style/Theme.VinylsMobile" />
 
-        <service
-            android:name=".service.CollectorService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".service.Collector"
-            android:enabled="true"
-            android:exported="true" />
-
         <activity
             android:name=".view.AlbumDetailActivity"
             android:exported="false" />
