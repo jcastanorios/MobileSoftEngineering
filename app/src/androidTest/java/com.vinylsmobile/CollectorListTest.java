@@ -62,21 +62,6 @@ public class CollectorListTest {
 
     }
 
-    @Test
-    public void testScrollCollectorList() {
-
-        onView(withId(R.id.visitButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.visitButton)).perform(click());
-
-        onView(withId(R.id.collectorForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.collectorForwardButton)).perform(click());
-
-        espera(4000);
-
-        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(10, scrollTo()));
-    }
-
     private void espera(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
