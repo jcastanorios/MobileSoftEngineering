@@ -20,6 +20,10 @@ android {
         }
     }
 
+    viewBinding{
+        enable=true
+    }
+
     buildFeatures {
         dataBinding=true
         compose = true
@@ -75,11 +79,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
-
+    implementation("com.squareup.leakcanary:leakcanary-android:2.13")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0") // Agrega esta línea
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
