@@ -33,4 +33,7 @@
     <string name="album_cover_description">Imágen del álbum</string>"
     <string name="performer_image_description">Imágen del artista</string>
 
+    <string name="title_activity_performer_detail2">PerformerDetail2</string>
+    <string name="title_activity_performer_details">PerformerDetailsActivity</string>
+    <string name="title_activity_performer_detail">PerformerDetailActivity</string>
 </resources>

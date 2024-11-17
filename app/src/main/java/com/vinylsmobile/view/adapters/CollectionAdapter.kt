@@ -16,9 +16,9 @@ import com.vinylsmobile.databinding.ItemPerformerBinding
 import com.vinylsmobile.model.Album
 import com.vinylsmobile.model.IPerformer
 import com.vinylsmobile.view.AlbumDetailActivity
-import com.vinylsmobile.view.PerformerDetailActivity
 import com.vinylsmobile.view.AlbumListFragment
 import com.vinylsmobile.view.PerformerListFragment
+import com.vinylsmobile.view.PerformerDetailActivity
 
 class CollectionAdapter(
     private val context: Context,
