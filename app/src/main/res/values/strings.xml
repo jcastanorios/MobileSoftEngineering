@@ -12,4 +12,28 @@
     <string name="album_title_placeholder">Album</string>
     <string name="album_genre_placeholder">Genero</string>
     <string name="album_label_placeholder">Disquera</string>
+
+    <string name="performer_detail_back">Performer detail back button</string>
+    <string name="performers_title">Artistas</string>
+    <string name="performer_forward_button">Ir a la lista de artistas</string>
+    <string name="performer_image">Performer image</string>
+    <string name="performer_title_placeholder">Performer</string>
+    <string name="performer_description">Description</string>
+    <string name="fec_nac_placeholder">Fecha de nacimiento:</string>
+    <string name="fec_crea_placeholder">Fecha de creación:</string>
+    <string name="performer_year_placeholder">Año</string>
+    <string name="performer_mes_placeholder">Mes</string>
+    <string name="performer_dia_placeholder">Día</string>
+    <string name="collectors_title">Coleccionistas</string>
+    <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
+    <string name="collectors_cover">+</string>
+
+    <string name="home_icon_description">Home Icon</string>
+    <string name="main_description">Página principal de acceso a la aplicación</string>
+    <string name="album_cover_description">Imágen del álbum</string>"
+    <string name="performer_image_description">Imágen del artista</string>
+
+    <string name="title_activity_performer_detail2">PerformerDetail2</string>
+    <string name="title_activity_performer_details">PerformerDetailsActivity</string>
+    <string name="title_activity_performer_detail">PerformerDetailActivity</string>
 </resources>

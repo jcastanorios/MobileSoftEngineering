@@ -12,7 +12,7 @@ class CollectionActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AlbumFragment())
+                .replace(R.id.fragment_container, CollectionFragment())
                 .commit()
         }
     }
