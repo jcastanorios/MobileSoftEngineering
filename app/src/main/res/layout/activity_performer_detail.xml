@@ -102,5 +102,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/performer_year_placeholder" />
+
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/albumRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"/>
 </LinearLayout>

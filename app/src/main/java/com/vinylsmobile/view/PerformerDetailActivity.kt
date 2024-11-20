@@ -13,16 +13,22 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import androidx.lifecycle.ViewModelProvider
 import com.vinylsmobile.R
+import com.vinylsmobile.view.adapters.AlbumAdapter
+import java.util.Date
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 class PerformerDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPerformerDetailBinding
     private lateinit var viewModel: PerformerDetailViewModel
+    private lateinit var albumAdapter: AlbumAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPerformerDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         viewModel = ViewModelProvider(
             this,
@@ -42,11 +48,11 @@ class PerformerDetailActivity : AppCompatActivity() {
             val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault())
             val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
             val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
-            val date = null
+            var date: Date? = null
             if (performer is Musician) {
-                val date = isoFormat.parse(performer.birthDate)
+                 date = isoFormat.parse(performer.birthDate)
             } else if (performer is Band) {
-                val date = isoFormat.parse(performer.creationDate)
+                 date = isoFormat.parse(performer.creationDate)
             }
             if (date != null) {
                 binding.performerYear.text = yearFormat.format(date)
@@ -55,7 +61,15 @@ class PerformerDetailActivity : AppCompatActivity() {
             }
 
             binding.performerFecNaci.text = getString(R.string.fec_crea_placeholder)
+            if (performer != null && performer.albums.isNotEmpty()) {
+                albumAdapter = AlbumAdapter(this)
+                albumAdapter.setAlbums(performer.albums)
+                binding.albumRecyclerView.adapter = albumAdapter
+                binding.albumRecyclerView.layoutManager = LinearLayoutManager(this)
+
+            }
         }
+
 
         binding.performerDetailBackButton.setOnClickListener {
             finish()

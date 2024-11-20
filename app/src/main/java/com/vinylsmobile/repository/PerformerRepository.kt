@@ -22,7 +22,7 @@ class PerformerRepository(private val application: Application, private val perf
         val limit = limiteinicial ?: Int.MAX_VALUE
  
         var cached = performersDao.getPerformers(limit)
-        if (cached.size == 2 && limit> 2 ) { //Estan consultando más de los albumnes de la cache, se limipia la cache
+        if (cached.size == 2 && limit> 2 ) { //Estan consultando más de los albumnes de la cache, se limpia la cache
             performersDao.clearCache()
             cached = performersDao.getPerformers(limit)
         }
@@ -45,7 +45,8 @@ class PerformerRepository(private val application: Application, private val perf
                             name = musician.name,
                             image = musician.image,
                             description = musician.description,
-                            type = PerformerType.ARTIST
+                            type = PerformerType.ARTIST,
+                            albums = musician.albums ?: emptyList()
                         )
                     }
                 )
@@ -56,7 +57,8 @@ class PerformerRepository(private val application: Application, private val perf
                             name = band.name,
                             image = band.image,
                             description = band.description,
-                            type = PerformerType.BAND
+                            type = PerformerType.BAND,
+                            albums = band.albums ?: emptyList()
                         )
                     }
                 )

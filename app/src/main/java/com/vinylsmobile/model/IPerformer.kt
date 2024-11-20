@@ -12,4 +12,5 @@ interface IPerformer {
     val image: String
     val description: String
     val type: PerformerType
+    val albums: List<Album>
 }

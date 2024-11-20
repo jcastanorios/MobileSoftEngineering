@@ -6,5 +6,6 @@ data class Band (
     override val image: String,
     override val description: String,
     override val type: PerformerType = PerformerType.BAND,
+    override val albums: List<Album>,
     val creationDate: String,
 ): IPerformer

@@ -10,7 +10,8 @@ data class Performer(
     override val image: String,
     override val description: String,
     override val type: PerformerType,
+    override val albums: List<Album>,
 ) : IPerformer {
     // Constructor vacío requerido por Room
-    constructor() : this(0, "", "", "", PerformerType.UNKNOWN)
+    constructor() : this(0, "", "", "", PerformerType.UNKNOWN, albums = emptyList())
 }

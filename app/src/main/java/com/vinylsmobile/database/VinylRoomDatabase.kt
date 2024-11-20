@@ -12,8 +12,15 @@ import com.vinylsmobile.model.Album
 import com.vinylsmobile.model.Collector
 import com.vinylsmobile.model.Performer
 import com.vinylsmobile.model.PerformerTypeConverter
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [Collector::class, Album::class, Performer::class], version = 1, exportSchema = false)
+
+@Database(
+    entities = [Collector::class, Album::class, Performer::class],
+    version = 2,
+    exportSchema = false
+)
 @TypeConverters(PerformerTypeConverter::class)
 abstract class VinylRoomDatabase : RoomDatabase() {
     abstract fun collectorsDao(): CollectorsDao
@@ -25,10 +32,8 @@ abstract class VinylRoomDatabase : RoomDatabase() {
         // same time.
         @Volatile
         private var INSTANCE: VinylRoomDatabase? = null
-
         fun getDatabase(context: Context): VinylRoomDatabase {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database
+            context.deleteDatabase("vinyls_database")
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
