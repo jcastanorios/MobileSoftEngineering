@@ -22,7 +22,6 @@ import com.vinylsmobile.view.AlbumListFragment
 import com.vinylsmobile.view.CollectorDetailActivity
 import com.vinylsmobile.view.PerformerListFragment
 import com.vinylsmobile.view.PerformerDetailActivity
-import com.vinylsmobile.viewmodels.CollectorViewModel
 
 class CollectionAdapter(
     private val context: Context,
