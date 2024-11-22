@@ -15,5 +15,4 @@ data class Album (
     //val tracks: List<Track>,
     //todo
     //val performers: List<Performer>,
-    //todo
 )

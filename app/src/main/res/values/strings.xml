@@ -36,10 +36,13 @@
     <string name="title_activity_performer_detail2">PerformerDetail2</string>
     <string name="title_activity_performer_details">PerformerDetailsActivity</string>
     <string name="title_activity_performer_detail">PerformerDetailActivity</string>
+
     <string name="placeholder_comment">Escribe tu comentario aquí</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="anio">Año</string>
-
     <string name="comment_album">Comenta este albúm</string>
+
+    <string name="fab_collection_activity">Floating Action Button for the collection activity. It\'s purpose is to show a popup of options.</string>
+    <string name="create_album">Create Album</string>
 </resources>
