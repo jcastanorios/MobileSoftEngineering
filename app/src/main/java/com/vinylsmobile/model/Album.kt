@@ -9,10 +9,5 @@ data class Album (
     val releaseDate: String,
     val description: String,
     val genre: String,
-    val recordLabel: String,
-    //todo
-    //val tracks: List<Track>,
-    //todo
-    //val performers: List<Performer>,
-    //todo
+    val recordLabel: String
 )
