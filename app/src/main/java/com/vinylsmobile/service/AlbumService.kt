@@ -34,4 +34,8 @@ class AlbumService private constructor() {
     suspend fun getAlbum(id: Int): Album {
         return albumApi.getAlbum(id)
     }
+
+    suspend fun saveAlbum(album: Album): Album {
+        return albumApi.postAlbum(album)
+    }
 }

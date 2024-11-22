@@ -49,6 +49,10 @@ class AlbumRepository(private val application: Application, private val albumsDa
     }
 
 
+    suspend fun saveAlbum(album: Album): Album {
+        return albumService.saveAlbum(album)
+    }
+
 
 
     suspend fun getAlbumItem(id: Int): Album {

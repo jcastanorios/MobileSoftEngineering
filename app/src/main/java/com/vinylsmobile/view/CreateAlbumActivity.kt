@@ -1,6 +1,7 @@
 package com.vinylsmobile.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +17,11 @@ class CreateAlbumActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val backButton = findViewById<View>(R.id.albumBackButton)
+        backButton.setOnClickListener {
+           finish()
         }
     }
 }
