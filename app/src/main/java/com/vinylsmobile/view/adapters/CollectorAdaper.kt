@@ -1,14 +1,17 @@
 package com.vinylsmobile.view.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.vinylsmobile.databinding.ItemCollectorBinding
 import com.vinylsmobile.model.Collector
+import com.vinylsmobile.view.CollectorDetailActivity
 
-class CollectorAdaper(private val context: Context, private val collectors: List<Collector>) :
- RecyclerView.Adapter<CollectorAdaper.ViewHolder>() {
+class CollectorAdapter(private val context: Context, private val collectors: List<Collector>) :
+ RecyclerView.Adapter<CollectorAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemCollectorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,6 +23,14 @@ class CollectorAdaper(private val context: Context, private val collectors: List
         val initials = getInitials(collector.name)
         holder.binding.collectorName.text = collector.name
         holder.binding.collectorCover.text = initials
+
+        val collectorButton: CardView = holder.binding.collectorCard
+        collectorButton.setOnClickListener{
+            val intent = Intent(context, CollectorDetailActivity::class.java)
+
+            intent.putExtra("collectorID", collector.id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = collectors.size
