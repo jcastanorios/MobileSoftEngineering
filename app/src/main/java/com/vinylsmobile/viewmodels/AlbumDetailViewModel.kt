@@ -35,7 +35,7 @@ class AlbumDetailViewModel(application: Application) : AndroidViewModel(applicat
                 val fetchedAlbums = repository.getAlbumItem(id)
                 _album.postValue(fetchedAlbums)
                 _comments.postValue(fetchedAlbums.comments)
-                loadCommentsForAlbum(fetchedAlbums.id)
+                loadCommentsForAlbum(fetchedAlbums.id!!)
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching album", e)
             }

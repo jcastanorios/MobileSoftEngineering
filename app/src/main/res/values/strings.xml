@@ -52,8 +52,6 @@
     <string name="descripcion">Descripción</string>
     <string name="disquera">Disquera</string>
     <string name="genero">Género</string>
-    <string name="guardar">Guardar</string>
-    <string name="cancelar">Cancelar</string>
 
     <string-array name="genres">
         <item>Salsa</item>

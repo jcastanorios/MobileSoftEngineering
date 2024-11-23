@@ -51,6 +51,7 @@ class CreateAlbumViewModel(application: Application) : AndroidViewModel(applicat
             description = description.value ?: "",
             genre = genreString,
             recordLabel = recordLabelString,
+            comments = emptyList()
         )
         // Save the album to the database or repository
         viewModelScope.launch {
