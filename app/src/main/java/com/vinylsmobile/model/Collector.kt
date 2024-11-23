@@ -7,4 +7,11 @@ data class Collector (
     val name: String,
     val telephone: String,
     val email: String,
+    val collectorAlbums: List<CollectorAlbums>
+)
+
+data class CollectorAlbums(
+    val id: Int,
+    val price: Int,
+    val status: String
 )

@@ -26,6 +26,7 @@ class CollectorDetailActivity : AppCompatActivity() {
         val name = findViewById<TextView>(R.id.collectorName)
         val telephone = findViewById<TextView>(R.id.collectorTelephone)
         val email = findViewById<TextView>(R.id.collectorEmail)
+        val albumsCount = findViewById<TextView>(R.id.collectorAlbumsCount)
 
         /*Nueva forma de llamar al Album*/
         viewModel = ViewModelProvider(
@@ -35,10 +36,13 @@ class CollectorDetailActivity : AppCompatActivity() {
 
         viewModel.collector.observe(this) { collector ->
             val initials = getInitials(collector.name)
-            cover.text=initials
-            name.text=collector.name
-            telephone.text=collector.telephone
-            email.text=collector.email
+            cover.text = initials
+            name.text = collector.name
+            telephone.text = collector.telephone
+            email.text = collector.email
+
+            val albumCount = collector.collectorAlbums.size
+            albumsCount.text = "Álbumes de ${collector.name}: $albumCount"
         }
         val collectorDetailBackButton = findViewById<ImageButton>(R.id.collectorDetailBackButton)
 
