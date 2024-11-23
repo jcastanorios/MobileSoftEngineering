@@ -19,7 +19,7 @@ import com.vinylsmobile.model.PerformerTypeConverter
 import com.squareup.leakcanary.core.BuildConfig
 
 @Database(entities = [Collector::class, Album::class, Performer::class, Comment::class], version = 1, exportSchema = false)
-@TypeConverters(PerformerTypeConverter::class, CommentConverter::class)
+@TypeConverters(PerformerTypeConverter::class, CommentConverter::class, CollectorConverter::class)
 abstract class VinylRoomDatabase : RoomDatabase() {
     abstract fun collectorsDao(): CollectorsDao
     abstract fun albumsDao(): AlbumsDao

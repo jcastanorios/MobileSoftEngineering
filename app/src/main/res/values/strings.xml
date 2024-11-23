@@ -24,9 +24,17 @@
     <string name="performer_year_placeholder">Año</string>
     <string name="performer_mes_placeholder">Mes</string>
     <string name="performer_dia_placeholder">Día</string>
+
     <string name="collectors_title">Coleccionistas</string>
     <string name="collectors_forward_button">Ir a la lista de coleccionistas</string>
+    <string name="collector_name_placeholder">Coleccionista</string>
+    <string name="collector_detail_back">Collector detail back button</string>
+    <string name="collector_telephone_placeholder">Teléfono</string>
+    <string name="collector_email_placeholder">Email</string>
     <string name="collectors_cover">+</string>
+    <string name="collector_contact">Información de contacto</string>
+    <string name="collector_albumes">Albumes del coleccionista</string>
+
 
     <string name="home_icon_description">Home Icon</string>
     <string name="main_description">Página principal de acceso a la aplicación</string>

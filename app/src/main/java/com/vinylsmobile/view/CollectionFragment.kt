@@ -12,7 +12,7 @@ import com.vinylsmobile.viewmodels.AlbumViewModel
 import com.vinylsmobile.viewmodels.PerformerViewModel
 import com.vinylsmobile.R
 import android.widget.Toast
-import com.vinylsmobile.view.adapters.CollectorAdaper
+import com.vinylsmobile.view.adapters.CollectorAdapter
 import com.vinylsmobile.viewmodels.CollectorViewModel
 import com.vinylsmobile.view.adapters.CollectionAdapter
 
@@ -44,7 +44,7 @@ class CollectionFragment : Fragment() {
 
 
         /*Nueva forma de llamar al Colector*/
-        val collectorViewModel = ViewModelProvider(
+        collectorViewModel = ViewModelProvider(
             this,
             CollectorViewModel.CollectorViewModelFactory(requireActivity().application)
         ).get(CollectorViewModel::class.java)
@@ -114,7 +114,7 @@ class CollectionFragment : Fragment() {
                     .show()
             } else {
                 binding.recyclerViewCollector.adapter =
-                    CollectorAdaper(requireContext(), collectors)
+                    CollectorAdapter(requireContext(), collectors)
             }
         }
 
