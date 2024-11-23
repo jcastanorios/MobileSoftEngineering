@@ -20,6 +20,9 @@
         <activity
             android:name=".view.CreateAlbumActivity"
             android:exported="false" />
+       <activity
+            android:name=".view.CommentActivity"
+            android:exported="false" />
         <activity
             android:name=".view.PerformerDetailActivity"
             android:exported="false"

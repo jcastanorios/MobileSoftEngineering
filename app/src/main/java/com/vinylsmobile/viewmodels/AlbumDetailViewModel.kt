@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.vinylsmobile.model.Album
+import com.vinylsmobile.model.Comment
 import com.vinylsmobile.repository.AlbumRepository
 import kotlinx.coroutines.launch
 
 class AlbumDetailViewModel(application: Application) : AndroidViewModel(application) {
 
-    // Crear el repositorio con el DAO desde la base de datos
     private val repository: AlbumRepository = AlbumRepository(
         application,
         com.vinylsmobile.database.VinylRoomDatabase.getDatabase(application).albumsDao()
@@ -23,17 +23,30 @@ class AlbumDetailViewModel(application: Application) : AndroidViewModel(applicat
     private val _album = MutableLiveData<Album>()
     val album: LiveData<Album> get() = _album
 
+    private val _comments = MutableLiveData<List<Comment>>()
+    val comments: LiveData<List<Comment>> get() = _comments
+
+    private val commentViewModel = CommentViewModel(application)
+
+
     fun loadAlbum(id: Int) {
         viewModelScope.launch {
             try {
                 val fetchedAlbums = repository.getAlbumItem(id)
                 _album.postValue(fetchedAlbums)
+                _comments.postValue(fetchedAlbums.comments)
+                loadCommentsForAlbum(fetchedAlbums.id!!)
             } catch (e: Exception) {
                 Log.e("ViewModel", "Error fetching album", e)
             }
         }
     }
 
+    private fun loadCommentsForAlbum(albumId: Int) {
+        commentViewModel.getCommentsForAlbum(albumId).observeForever { comments ->
+            _comments.postValue(comments)
+        }
+    }
 
     class AlbumDetailViewModelFactory(private val application: Application)  : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
