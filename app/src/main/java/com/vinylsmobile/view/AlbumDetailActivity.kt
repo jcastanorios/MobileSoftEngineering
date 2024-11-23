@@ -21,7 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import android.content.Intent
 import androidx.activity.viewModels
-
+import com.vinylsmobile.Application
+import com.vinylsmobile.UserRole
 
 
 import java.text.SimpleDateFormat
@@ -110,19 +111,26 @@ class AlbumDetailActivity : AppCompatActivity() {
         }
 
         val commentAlbumButton = findViewById<LinearLayout>(R.id.commentAlbumContainer)
-        commentAlbumButton.setOnClickListener {
-            val album = viewModel.album.value
-            val intent = Intent(this, CommentActivity::class.java)
-            intent.putExtra("albumId", album?.id ?: -1)
-            intent.putExtra("albumName", album?.name)
+        val application = application as Application
+        val userRole = application.getUserRole()
+        if (userRole == UserRole.VISITOR) {
+            commentAlbumButton.visibility = View.GONE
+        } else {
+            commentAlbumButton.visibility = View.VISIBLE
+            commentAlbumButton.setOnClickListener {
+                val album = viewModel.album.value
+                val intent = Intent(this, CommentActivity::class.java)
+                intent.putExtra("albumId", album?.id ?: -1)
+                intent.putExtra("albumName", album?.name)
 
-            val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
-            val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-            val date = isoFormat.parse(album?.releaseDate)
-            intent.putExtra("albumYear",  if (date != null) humanReadableFormat.format(date)
-            else album?.releaseDate)
-            intent.putExtra("albumCover", album?.cover)
-            startActivity(intent)
+                val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.S'Z'", Locale.getDefault())
+                val humanReadableFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+                val date = isoFormat.parse(album?.releaseDate)
+                intent.putExtra("albumYear",  if (date != null) humanReadableFormat.format(date)
+                else album?.releaseDate)
+                intent.putExtra("albumCover", album?.cover)
+                startActivity(intent)
+            }
         }
     }
 }
