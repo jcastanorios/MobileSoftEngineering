@@ -25,7 +25,12 @@ Asegúrate de que el proyecto esté abierto en Android Studio y que las dependen
 1. Navega al archivo de prueba en el explorador de archivos de Android Studio. En este caso, ve a:
 
    `app/src/androidTest/java/com.vinylsmobile/AlbumListTest.java`
-
    `app/src/androidTest/java/com.vinylsmobile/AlbumDetailTest.java`
+   `app/src/androidTest/java/com.vinylsmobile/PerformerListTest.java`
+   `app/src/androidTest/java/com.vinylsmobile/ArtistDetailTest.java`
+   `app/src/androidTest/java/com.vinylsmobile/CollectorListTest.java`
+   `app/src/androidTest/java/com.vinylsmobile/CollectorDetailTest.java`
+ 
+ 
 2. Haz clic derecho sobre el archivo a ejecutar y selecciona Run ‘NombreDelArchivo’ para ejecutar todas las pruebas en la clase.
    - Para ejecutar una prueba específica, abre el archivo y haz clic en el ícono de ejecución (▶) junto al nombre de la prueba.
