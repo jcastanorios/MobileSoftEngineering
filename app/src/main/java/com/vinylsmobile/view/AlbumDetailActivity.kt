@@ -85,7 +85,7 @@ class AlbumDetailActivity : AppCompatActivity() {
             genre.text = album.genre
             label.text = album.recordLabel
 
-            commentAdapter = CommentAdapter(album.comments)
+            commentAdapter = CommentAdapter(album.comments ?: emptyList())
             commentsRecyclerView.adapter = commentAdapter
         }
 
