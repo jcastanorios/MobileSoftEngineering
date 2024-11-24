@@ -28,6 +28,9 @@ class CreateAlbumViewModel(application: Application) : AndroidViewModel(applicat
     val genre = MutableLiveData<Int>()
     val recordLabel = MutableLiveData<Int>()
 
+    val _validationMessage = MutableLiveData<String>()
+    val validationMessage: LiveData<String> get() = _validationMessage
+
     private val _albumSaved = MutableLiveData<Boolean>()
     val albumSaved: LiveData<Boolean> get() = _albumSaved
     private val _isLoading = MutableLiveData<Boolean>()
@@ -76,6 +79,7 @@ class CreateAlbumViewModel(application: Application) : AndroidViewModel(applicat
 
     private fun validateField(field: String?, fieldName: String): Boolean {
         if (field.isNullOrEmpty()) {
+            _validationMessage.postValue("$fieldName is required")
             Toast.makeText(getApplication(), "$fieldName is required", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -84,16 +88,19 @@ class CreateAlbumViewModel(application: Application) : AndroidViewModel(applicat
 
     private fun validateFields(): Boolean {
         if (!isValidCoverUrl(cover.value)) {
+            _validationMessage.postValue("Invalid cover URL")
             Toast.makeText(getApplication(), "Invalid cover URL", Toast.LENGTH_SHORT).show()
             return false
         }
         if (!validateField(name.value, "Name")) return false
         if (!validateField(releaseDate.value, "Release date")) return false
         if (genre.value == null) {
+            _validationMessage.postValue("Genre is required")
             Toast.makeText(getApplication(), "Genre is required", Toast.LENGTH_SHORT).show()
             return false
         }
         if (recordLabel.value == null) {
+            _validationMessage.postValue("Record label is required")
             Toast.makeText(getApplication(), "Record label is required", Toast.LENGTH_SHORT).show()
             return false
         }
