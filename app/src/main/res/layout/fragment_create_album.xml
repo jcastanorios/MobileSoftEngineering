@@ -92,6 +92,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvValidationMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.validationMessage}"
+                android:textAlignment="center"
+                android:textColor="@color/orange" />
         </LinearLayout>
     </ScrollView>
 </layout>
