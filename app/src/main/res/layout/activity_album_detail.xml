@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/albumCover"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="380dp"
             android:contentDescription="@string/album_cover_photo"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +43,14 @@
 
         <ImageButton
             android:id="@+id/albumDetailBackButton"
-            android:layout_width="48dp"
+            android:layout_width="51dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="@null"
+            android:background="@drawable/rounded_arrow_bg"
             android:contentDescription="@string/album_detail_back"
             android:src="@drawable/arrow_back"
+            android:radius="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,33 +97,30 @@
         android:id="@+id/commentAlbumContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_margin="10dp"
         android:background="@drawable/rounded_button"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="13dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="2dp"
-        android:paddingBottom="2dp">
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="9dp">
 
         <TextView
             android:id="@+id/commentAlbumButtonText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
             android:text="Comenta este álbum"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
+            android:paddingStart="14dp"
             android:textStyle="bold" />
 
         <RatingBar
             android:id="@+id/starRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:isIndicator="true"
+            android:paddingTop="4dp"
             android:numStars="5"
             android:rating="0"
             android:scaleX="0.8"

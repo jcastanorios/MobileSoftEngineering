@@ -22,12 +22,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:gravity="start">
+                android:gravity="center_vertical">
 
                 <ImageButton
                     android:id="@+id/collectorBackButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@null"
                     android:contentDescription="@string/collectors_forward_button"
                     android:src="@drawable/arrow_back" />
@@ -36,12 +36,11 @@
                     android:id="@+id/collectorListTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginStart="4dp"
                     android:fontFamily="@font/nunito_bold"
                     android:lineSpacingExtra="2sp"
                     android:text="@string/collectors_title"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="#4E4E4E"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>
