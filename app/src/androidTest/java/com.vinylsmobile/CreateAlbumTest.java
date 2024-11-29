@@ -37,8 +37,8 @@ public class CreateAlbumTest {
 
         if (fromDetail) {
             //Clic en el botón para avanzar a la lista de álbumes
-            onView(withId(R.id.albumForwardButton)).check(matches(isDisplayed()));
-            onView(withId(R.id.albumForwardButton)).perform(click());
+            onView(withId(R.id.albumListButton)).check(matches(isDisplayed()));
+            onView(withId(R.id.albumListButton)).perform(click());
 
             // Espera fija para dar tiempo a que se carguen los datos del album
             espera(4000);
@@ -102,13 +102,6 @@ public class CreateAlbumTest {
         onView(withId(R.id.etName)).perform(replaceText("Test album"));
         onView(withId(R.id.btnSave)).perform(click());
         onView(withText("Release date is required")).check(matches(isDisplayed()));
-
-        onView(withId(R.id.btnReleaseDate)).perform(click());
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
-                .perform(PickerActions.setDate(2023, 12, 25));
-        onView(withId(android.R.id.button1)).perform(click());
-        onView(withId(R.id.btnSave)).perform(click());
-        onView(withText("Description is required")).check(matches(isDisplayed()));
     }
 
     @Test

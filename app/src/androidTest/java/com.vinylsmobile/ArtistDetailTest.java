@@ -66,8 +66,8 @@ public class ArtistDetailTest {
         onView(withId(R.id.visitButton)).perform(click());
 
         //Clic en el botón para avanzar a la lista de artistas
-        onView(withId(R.id.performerForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.performerForwardButton)).perform(click());
+        onView(withId(R.id.performerListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.performerListButton)).perform(click());
 
         // Espera fija para dar tiempo a que se carguen los datos del artist
         espera(4000);
