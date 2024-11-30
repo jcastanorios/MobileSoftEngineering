@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vinylsmobile.R
 import com.vinylsmobile.databinding.ItemAlbumBinding
+import com.vinylsmobile.databinding.ItemCollectorBinding
 import com.vinylsmobile.databinding.ItemPerformerBinding
 import com.vinylsmobile.model.Album
+import com.vinylsmobile.model.Collector
 import com.vinylsmobile.model.IPerformer
 import com.vinylsmobile.view.AlbumDetailActivity
 import com.vinylsmobile.view.AlbumListFragment
+import com.vinylsmobile.view.CollectorDetailActivity
 import com.vinylsmobile.view.PerformerListFragment
 import com.vinylsmobile.view.PerformerDetailActivity
 
@@ -73,6 +76,16 @@ class CollectionAdapter(
                     context.startActivity(intent)
                 }
             }
+            is CollectorViewHolder -> {
+                val collector = items[position] as Collector
+                holder.binding.collectorName.text = collector.name
+
+                holder.binding.collectorCard.setOnClickListener {
+                    val intent = Intent(context, CollectorDetailActivity::class.java)
+                    intent.putExtra("collectorID", collector.id)
+                    context.startActivity(intent)
+                }
+            }
             is ViewMoreViewHolder -> {
                 holder.viewMoreTextView.text = viewMoreText
 
@@ -105,6 +118,7 @@ class CollectionAdapter(
 
     class AlbumViewHolder(val binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root)
     class PerformerViewHolder(val binding: ItemPerformerBinding) : RecyclerView.ViewHolder(binding.root)
+    class CollectorViewHolder(val binding: ItemCollectorBinding) : RecyclerView.ViewHolder(binding.root)
     inner class ViewMoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val viewMoreButton: CardView = itemView.findViewById(R.id.viewMoreButton)
         val viewMoreTextView: TextView = itemView.findViewById(R.id.collectorName)

@@ -35,13 +35,13 @@ public class AlbumDetailTest {
         onView(withId(R.id.visitButton)).perform(click());
 
         // Espera fija para dar tiempo a que se carguen los datos del album
-        espera(4000);
+        espera(3000);
         // Clic en el primer álbum del RecyclerView
         onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
         onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
 
         //Espera a que se carguen los datos del album para el detalle
-        espera(1000);
+        espera(2000);
 
         //Valida que todos los elementeos del detalle del album esten presentes
         onView(withId(R.id.albumCover)).check(matches(isDisplayed()));
@@ -81,17 +81,17 @@ public class AlbumDetailTest {
         onView(withId(R.id.visitButton)).perform(click());
 
         //Clic en el botón para avanzar a la lista de álbumes
-        onView(withId(R.id.albumForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.albumForwardButton)).perform(click());
+        onView(withId(R.id.albumListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumListButton)).perform(click());
 
         // Espera fija para dar tiempo a que se carguen los datos del album
-        espera(4000);
+        espera(3000);
         // Clic en el primer álbum del RecyclerView
         onView(withId(R.id.recyclerView)).check(matches(isDisplayed()));
         onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition(0, click()));
 
         //Espera a que se carguen los datos del album para el detalle
-        espera(1000);
+        espera(2000);
 
         //Valida que todos los elementeos del detalle del album esten presentes
         onView(withId(R.id.albumCover)).check(matches(isDisplayed()));

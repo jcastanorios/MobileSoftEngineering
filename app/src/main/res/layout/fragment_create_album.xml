@@ -1,0 +1,117 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vinylsmobile.viewmodels.CreateAlbumViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etCover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                android:autofillHints=""
+                android:hint="@string/cover"
+                android:inputType="textUri"
+                android:text="@={viewModel.cover}" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:textColorHint="#757575"
+                android:autofillHints=""
+                android:hint="@string/nombre"
+                android:inputType="text"
+                android:text="@={viewModel.name}" />
+
+            <Button
+                android:id="@+id/btnReleaseDate"
+                text="@{viewModel.releaseDate}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D14900"
+                android:hint="@string/fecha_lanzamiento"
+                android:textColor="@android:color/white"
+                android:textColorHint="#FFFFFF"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/etGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/genres"
+                android:minHeight="48dp"
+                android:onItemSelected="@{(parent, view, position, id) -> viewModel.onGenreSelected(position)}" />
+
+            <Spinner
+                android:id="@+id/etRecordLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/record_labels"
+                android:minHeight="48dp"
+                android:onItemSelected="@{(parent, view, position, id) -> viewModel.onRecordLabelSelected(position)}" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="@string/descripcion"
+                android:textColorHint="#757575"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:text="@={viewModel.description}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="fill"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancelar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#D14900"
+                    android:onClick="@{() -> viewModel.saveAlbum()}"
+                    android:text="@string/guardar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvValidationMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.validationMessage}"
+                android:textAlignment="center"
+                android:textColor="@color/orange" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

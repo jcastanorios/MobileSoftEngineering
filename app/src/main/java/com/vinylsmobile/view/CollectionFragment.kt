@@ -12,7 +12,7 @@ import com.vinylsmobile.viewmodels.AlbumViewModel
 import com.vinylsmobile.viewmodels.PerformerViewModel
 import com.vinylsmobile.R
 import android.widget.Toast
-import com.vinylsmobile.view.adapters.CollectorAdaper
+import com.vinylsmobile.view.adapters.CollectorAdapter
 import com.vinylsmobile.viewmodels.CollectorViewModel
 import com.vinylsmobile.view.adapters.CollectionAdapter
 
@@ -44,7 +44,7 @@ class CollectionFragment : Fragment() {
 
 
         /*Nueva forma de llamar al Colector*/
-        val collectorViewModel = ViewModelProvider(
+        collectorViewModel = ViewModelProvider(
             this,
             CollectorViewModel.CollectorViewModelFactory(requireActivity().application)
         ).get(CollectorViewModel::class.java)
@@ -114,7 +114,7 @@ class CollectionFragment : Fragment() {
                     .show()
             } else {
                 binding.recyclerViewCollector.adapter =
-                    CollectorAdaper(requireContext(), collectors)
+                    CollectorAdapter(requireContext(), collectors)
             }
         }
 
@@ -123,12 +123,9 @@ class CollectionFragment : Fragment() {
         collectorViewModel.loadCollectors()
 
 
-        binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
-        binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
-        binding.performerForwardButton.setOnClickListener { navigateTo(PerformerListFragment()) }
-        binding.performerListTitle.setOnClickListener { navigateTo(PerformerListFragment()) }
-        binding.collectorForwardButton.setOnClickListener { navigateTo(CollectorListFragment()) }
-        binding.collectorListTitle.setOnClickListener { navigateTo(CollectorListFragment()) }
+        binding.albumListButton.setOnClickListener { navigateTo(AlbumListFragment()) }
+        binding.collectorListButton.setOnClickListener { navigateTo(CollectorListFragment()) }
+        binding.performerListButton.setOnClickListener { navigateTo(PerformerListFragment()) }
 
         return binding.root
     }

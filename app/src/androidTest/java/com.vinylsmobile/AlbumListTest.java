@@ -59,8 +59,8 @@ public class AlbumListTest {
         onView(withId(R.id.visitButton)).perform(click());
 
         // Clic en el botón para avanzar a la lista de álbumes
-        onView(withId(R.id.albumForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.albumForwardButton)).perform(click());
+        onView(withId(R.id.albumListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumListButton)).perform(click());
 
         // Espera fija para dar tiempo a que se carguen los datos del album
         espera(4000);
@@ -79,8 +79,8 @@ public class AlbumListTest {
         onView(withId(R.id.visitButton)).perform(click());
 
         //Clic en el botón para avanzar a la lista de álbumes
-        onView(withId(R.id.albumForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.albumForwardButton)).perform(click());
+        onView(withId(R.id.albumListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumListButton)).perform(click());
 
         // Espera fija para dar tiempo a que se carguen los datos del album
         espera(4000);

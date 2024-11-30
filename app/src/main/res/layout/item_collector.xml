@@ -5,7 +5,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/albumCard"
+        android:id="@+id/collectorCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -15,31 +15,41 @@
         app:cardElevation="4dp">
 
         <LinearLayout
-            android:layout_width="162dp"
-            android:layout_height="210dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/collectorCover"
-                android:layout_width="145dp"
-                android:layout_height="137dp"
-                android:background="#61ACE9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="150dp"
+                android:minHeight="137dp"
+                android:background="#3D6B91"
                 android:gravity="center"
                 android:text="@string/collectors_title"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="60sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:scaleType="centerCrop"
+                android:ellipsize="none"
+                android:singleLine="false"/>
 
 
             <TextView
                 android:id="@+id/collectorName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:ellipsize="none"
+                android:singleLine="false"
+                android:lines="2"
+                android:gravity="start|center_vertical"
+                android:layout_gravity="start|center_vertical" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

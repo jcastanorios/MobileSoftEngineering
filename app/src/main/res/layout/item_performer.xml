@@ -15,8 +15,8 @@
         app:cardElevation="4dp">
 
         <LinearLayout
-            android:layout_width="162dp"
-            android:layout_height="210dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp">
 
@@ -24,16 +24,22 @@
                 android:id="@+id/performerImage"
                 android:layout_width="150dp"
                 android:layout_height="137dp"
-                android:contentDescription="@string/album_cover_description"
+                android:contentDescription="@string/performer_description"
                 android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/performerName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:ellipsize="none"
+                android:singleLine="false"
+                android:lines="2"
+                android:gravity="start|center_vertical"
+                android:layout_gravity="start|center_vertical" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 </layout>

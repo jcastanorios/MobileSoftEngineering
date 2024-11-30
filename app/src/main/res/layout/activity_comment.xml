@@ -6,29 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.PerformerDetailActivity">
+    android:padding="16dp"
+    tools:context=".view.CommentActivity">
 
-    <!-- Usar ConstraintLayout para la parte superior -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/performerImageDetail"
+            android:id="@+id/albumCover"
             android:layout_width="0dp"
-            android:layout_height="380dp"
-            android:contentDescription="@string/performer_image"
+            android:layout_height="300dp"
+            android:contentDescription="@string/album_cover_photo"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/performerNameDetail"
+            android:id="@+id/albumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -36,71 +36,85 @@
             android:paddingEnd="20dp"
             android:shadowColor="@color/black"
             android:shadowRadius="20"
-            android:text="@string/performer_title_placeholder"
+            android:text="@string/album_title_placeholder"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+
         <ImageButton
-            android:id="@+id/performerDetailBackButton"
+            android:id="@+id/commentDetailBackButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/rounded_arrow_bg"
-            android:contentDescription="@string/performer_detail_back"
+            android:background="@null"
+            android:contentDescription="@string/album_detail_back"
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Descripción del Performer -->
     <TextView
-        android:id="@+id/performerDescription"
+        android:id="@+id/albumYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:padding="30dp"
-        android:text="@string/description_placeholder"
+        android:layout_marginTop="8dp"
+        android:padding="5dp"
+        android:text="@string/anio"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Sección de fechas, mantiene la alineación original -->
+    <RatingBar
+        android:id="@+id/albumRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/commentDescription"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:gravity="top|start"
+        android:hint="@string/placeholder_comment"
+        android:inputType="textMultiLine|textCapSentences" />
+
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/performerFecNaci"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fec_nac_placeholder"
-            android:layout_marginEnd="8dp" />
 
-        <TextView
-            android:id="@+id/performerDay"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/cancelButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/performer_dia_placeholder"
-            android:layout_marginEnd="8dp" />
+            android:layout_weight="1"
+            android:text="@string/cancelar"
+            android:backgroundTint="@color/cardview_shadow_start_color"
+            android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/performerMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/performer_mes_placeholder"
-            android:layout_marginEnd="8dp" />
 
-        <TextView
-            android:id="@+id/performerYear"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/saveButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/performer_year_placeholder" />
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/guardar"
+            android:backgroundTint="@color/orange"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

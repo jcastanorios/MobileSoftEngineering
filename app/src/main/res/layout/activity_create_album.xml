@@ -1,4 +1,11 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CreateAlbumActivity">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +32,7 @@
                     android:id="@+id/albumBackButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:background="@android:color/white"
+                    android:background="@null"
                     android:contentDescription="@string/album_detail_back"
                     android:src="@drawable/arrow_back" />
 
@@ -36,7 +43,7 @@
                     android:layout_marginStart="4dp"
                     android:fontFamily="@font/nunito_bold"
                     android:lineSpacingExtra="2sp"
-                    android:text="@string/albumes_title"
+                    android:text="@string/crear_album_title"
                     android:textColor="#4E4E4E"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -47,10 +54,11 @@
                 android:layout_marginBottom="15dp"
                 android:background="@android:color/darker_gray" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_container_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:name="com.vinylsmobile.view.CreateAlbumFragment" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -60,4 +68,5 @@
                 android:visibility="gone" />
         </LinearLayout>
     </RelativeLayout>
-</layout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

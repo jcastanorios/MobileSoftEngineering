@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vinylsmobile.R
 import com.vinylsmobile.databinding.FragmentListCollectorBinding
-import com.vinylsmobile.view.adapters.CollectorAdaper
+import com.vinylsmobile.view.adapters.CollectorAdapter
 import com.vinylsmobile.viewmodels.CollectorViewModel
 
 class CollectorListFragment : Fragment() {
@@ -38,7 +38,7 @@ class CollectorListFragment : Fragment() {
         val context = requireContext()
         viewModel.collectors.observe(viewLifecycleOwner) { collectors ->
             binding.progressBar.visibility = View.GONE
-            binding.recyclerView.adapter = CollectorAdaper(context, collectors)
+            binding.recyclerView.adapter = CollectorAdapter(context, collectors)
         }
         binding.collectorBackButton.setOnClickListener {
             parentFragmentManager.beginTransaction()

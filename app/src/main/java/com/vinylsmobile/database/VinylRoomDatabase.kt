@@ -1,5 +1,6 @@
 package com.vinylsmobile.database
 
+
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -8,27 +9,28 @@ import androidx.room.TypeConverters
 import com.vinylsmobile.database.dao.AlbumsDao
 import com.vinylsmobile.database.dao.CollectorsDao
 import com.vinylsmobile.database.dao.PerformersDao
+import com.vinylsmobile.database.dao.CommentDao
 import com.vinylsmobile.model.Album
 import com.vinylsmobile.model.Collector
+import com.vinylsmobile.model.Comment
+import com.vinylsmobile.model.CommentConverter
 import com.vinylsmobile.model.Performer
 import com.vinylsmobile.model.PerformerTypeConverter
+import com.squareup.leakcanary.core.BuildConfig
 
-@Database(entities = [Collector::class, Album::class, Performer::class], version = 1, exportSchema = false)
-@TypeConverters(PerformerTypeConverter::class)
+@Database(entities = [Collector::class, Album::class, Performer::class, Comment::class], version = 1, exportSchema = false)
+@TypeConverters(PerformerTypeConverter::class, CommentConverter::class, CollectorConverter::class)
 abstract class VinylRoomDatabase : RoomDatabase() {
     abstract fun collectorsDao(): CollectorsDao
     abstract fun albumsDao(): AlbumsDao
     abstract fun performersDao(): PerformersDao
+    abstract fun commentDao(): CommentDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
         @Volatile
         private var INSTANCE: VinylRoomDatabase? = null
 
         fun getDatabase(context: Context): VinylRoomDatabase {
-            // if the INSTANCE is not null, then return it,
-            // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -36,7 +38,7 @@ abstract class VinylRoomDatabase : RoomDatabase() {
                     "vinyls_database"
                 ).build()
                 INSTANCE = instance
-                // return instance
+
                 instance
             }
         }

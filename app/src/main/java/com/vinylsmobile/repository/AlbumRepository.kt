@@ -18,15 +18,13 @@ class AlbumRepository(private val application: Application, private val albumsDa
 
 
         var cached = albumsDao.getAlbums(limit)
-        if (cached.size == 2 && limit> 2 ) { //Estan consultando más de los albumnes de la cache, se limipia la cache
+        if (cached.size == 2 && limit> 2 ) {
             albumsDao.clearCache()
             cached = albumsDao.getAlbums(limit)
         }
 
 
         if (cached.isNullOrEmpty()) {
-
-            // Verificar el estado de la red
             if (!isNetworkAvailable(application)) {
                 return@withContext emptyList()
             } else {
@@ -49,11 +47,17 @@ class AlbumRepository(private val application: Application, private val albumsDa
     }
 
 
+    suspend fun saveAlbum(album: Album): Album {
+        return albumService.saveAlbum(album)
+    }
+
 
 
     suspend fun getAlbumItem(id: Int): Album {
         return albumService.getAlbum(id)
     }
+
+
 
     /*
     * Verificar si hay conexión a internet
