@@ -24,16 +24,16 @@ class AlbumAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val album = albums[position]
         holder.binding.albumName.text = album.name
-        Glide.with(holder.binding.root)
+
+        //Microoptimizacion: Uso de Contexto Seguro
+        Glide.with(holder.binding.albumCover.context)
             .load(album.cover)
             .into(holder.binding.albumCover)
 
         val albumButton: CardView = holder.binding.albumCard
         albumButton.setOnClickListener {
-            val intent = Intent(context, AlbumDetailActivity::class.java)
-
-            intent.putExtra("albumID",album.id)
-            context.startActivity(intent)
+            //Microoptimizacion: Liberación de memoria evitar recreación del Intent en cada clic
+            navigateToAlbumDetail(context, album.id)
         }
     }
 
@@ -46,5 +46,23 @@ class AlbumAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun unbind() {
+            //Microoptimizacion: liberación de referencia a imagen para liberar el Item
+            binding.albumCover.setImageDrawable(null) // n
+        }
+    }
+
+    //Llamada a la función de liberación
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        holder.unbind()
+    }
+
+    private fun navigateToAlbumDetail(context: Context, albumId: Int?) {
+        val intent = Intent(context, AlbumDetailActivity::class.java)
+        intent.putExtra("albumID", albumId)
+        context.startActivity(intent)
+    }
+
 }
