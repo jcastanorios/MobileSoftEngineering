@@ -30,6 +30,8 @@ Asegúrate de que el proyecto esté abierto en Android Studio y que las dependen
    `app/src/androidTest/java/com.vinylsmobile/ArtistDetailTest.java`
    `app/src/androidTest/java/com.vinylsmobile/CollectorListTest.java`
    `app/src/androidTest/java/com.vinylsmobile/CollectorDetailTest.java`
+   `app/src/androidTest/java/com.vinylsmobile/CommentAlbum.java`
+   `app/src/androidTest/java/com.vinylsmobile/CreateAlbum.java`
  
  
 2. Haz clic derecho sobre el archivo a ejecutar y selecciona Run ‘NombreDelArchivo’ para ejecutar todas las pruebas en la clase.
