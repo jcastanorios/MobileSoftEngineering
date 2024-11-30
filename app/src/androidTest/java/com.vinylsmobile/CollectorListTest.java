@@ -52,8 +52,8 @@ public class CollectorListTest {
         onView(withId(R.id.visitButton)).check(matches(isDisplayed()));
         onView(withId(R.id.visitButton)).perform(click());
 
-        onView(withId(R.id.collectorForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.collectorForwardButton)).perform(click());
+        onView(withId(R.id.collectorListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.collectorListButton)).perform(click());
 
         espera(4000);
 

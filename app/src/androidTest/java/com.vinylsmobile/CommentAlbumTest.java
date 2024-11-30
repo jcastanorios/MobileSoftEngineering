@@ -42,6 +42,7 @@ public class CommentAlbumTest {
         onView(withId(R.id.albumRating)).perform(setRating(4));
 
         commentAlbum();
+        espera(1000);
 
         onView(withId(R.id.albumDetailBackButton)).perform(click());
         espera(1000);
@@ -57,8 +58,8 @@ public class CommentAlbumTest {
         onView(withId(R.id.collectButton)).check(matches(isDisplayed()));
         onView(withId(R.id.collectButton)).perform(click());
 
-        onView(withId(R.id.albumForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.albumForwardButton)).perform(click());
+        onView(withId(R.id.albumListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.albumListButton)).perform(click());
 
         espera(4000);
 
@@ -71,6 +72,8 @@ public class CommentAlbumTest {
         onView(withId(R.id.albumRating)).perform(setRating(5));
 
         commentAlbum();
+        espera(1000);
+
         onView(withId(R.id.albumDetailBackButton)).perform(click());
         espera(1000);
 

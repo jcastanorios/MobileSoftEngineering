@@ -94,8 +94,8 @@ public class CollectorDetailTest {
         onView(withId(R.id.visitButton)).perform(click());
 
         //Clic en el botón para avanzar a la lista de coleccionistas
-        onView(withId(R.id.collectorForwardButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.collectorForwardButton)).perform(click());
+        onView(withId(R.id.collectorListButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.collectorListButton)).perform(click());
 
         // Espera fija para dar tiempo a que se carguen los datos del artist
         espera(3000);

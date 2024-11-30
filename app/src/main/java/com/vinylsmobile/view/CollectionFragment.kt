@@ -123,12 +123,9 @@ class CollectionFragment : Fragment() {
         collectorViewModel.loadCollectors()
 
 
-        binding.albumForwardButton.setOnClickListener { navigateTo(AlbumListFragment()) }
-        binding.albumListTitle.setOnClickListener { navigateTo(AlbumListFragment()) }
-        binding.performerForwardButton.setOnClickListener { navigateTo(PerformerListFragment()) }
-        binding.performerListTitle.setOnClickListener { navigateTo(PerformerListFragment()) }
-        binding.collectorForwardButton.setOnClickListener { navigateTo(CollectorListFragment()) }
-        binding.collectorListTitle.setOnClickListener { navigateTo(CollectorListFragment()) }
+        binding.albumListButton.setOnClickListener { navigateTo(AlbumListFragment()) }
+        binding.collectorListButton.setOnClickListener { navigateTo(CollectorListFragment()) }
+        binding.performerListButton.setOnClickListener { navigateTo(PerformerListFragment()) }
 
         return binding.root
     }

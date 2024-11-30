@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/performerImageDetail"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="380dp"
             android:contentDescription="@string/performer_image"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="@null"
+            android:background="@drawable/rounded_arrow_bg"
             android:contentDescription="@string/performer_detail_back"
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
